@@ -18,42 +18,42 @@ const Partners = () => {
       id: 1,
       name: "Harry's Singapore",
       description: "One of Singapore's most established bar and dining chains with over 20 outlets",
-      logoUrl: "https://logos-world.net/wp-content/uploads/2022/01/Harry-Logo.png",
+      logoUrl: "https://upload.wikimedia.org/wikipedia/commons/0/0a/Harry%27s_Restaurant_Logo.jpg",
       imageUrl: "https://images.unsplash.com/photo-1525268323446-0505b6fe7778?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
     },
     {
       id: 2,
       name: "Burnt Ends",
       description: "One-Michelin-starred modern Australian barbecue restaurant",
-      logoUrl: "https://static.wixstatic.com/media/e4ef56_28f33ecd7dbe41d0a4318fce9b6e98e6~mv2.png",
+      logoUrl: "https://burntends.com.sg/wp-content/uploads/2015/02/burntendslogo.png",
       imageUrl: "https://images.unsplash.com/photo-1544025162-d76694265947?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
     },
     {
       id: 3,
       name: "Raffles Hotel",
       description: "Iconic colonial-style luxury hotel established in 1887",
-      logoUrl: "https://www.raffles.com/assets/0/72/136/55bc0df0-59ce-43b2-9ef8-c51032f8d1c8.png",
+      logoUrl: "https://seeklogo.com/images/R/raffles-hotel-singapore-logo-A8D12E58BD-seeklogo.com.png",
       imageUrl: "https://images.unsplash.com/photo-1568084680786-a84f91d1153c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
     },
     {
       id: 4,
       name: "Atlas Bar",
       description: "Art Deco-inspired grand lobby and bar featuring over 1,300 gins",
-      logoUrl: "https://www.atlasbar.sg/images/logo.png",
+      logoUrl: "https://assets.website-files.com/61cd08286c9cafd5eb4ca1f4/61cfe51e9f11fb2d8e342f55_Atlas%20logo.png",
       imageUrl: "https://images.unsplash.com/photo-1575444758702-4a6b9222336e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
     },
     {
       id: 5,
       name: "Culina",
       description: "Premium gourmet food marketplace and bistro",
-      logoUrl: "https://www.culina.com.sg/wp-content/uploads/2018/02/COMO-Dempsey-Primary-Logo-White.png",
+      logoUrl: "https://www.culinaatyork.com.sg/images/logo-black.png",
       imageUrl: "https://images.unsplash.com/photo-1586999768265-24af89630739?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
     },
     {
       id: 6,
       name: "Super Loco",
       description: "Contemporary Mexican restaurant and cocktail bar",
-      logoUrl: "https://www.super-loco.com/wp-content/uploads/2017/09/Logo-with-Location-big.png",
+      logoUrl: "https://www.super-loco.com/wp-content/uploads/2022/06/Super-Loco-Logo.png",
       imageUrl: "https://images.unsplash.com/photo-1551504734-5ee1c4a1479b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80"
     }
   ];

@@ -1,13 +1,14 @@
 import { Link } from "wouter";
-import logo from "../../assets/worksta-logo.png";
+import logo from "../../assets/images/worksta-logo.png";
 
 interface LogoProps {
   size?: "small" | "medium" | "large";
   showText?: boolean;
   darkMode?: boolean;
+  className?: string;
 }
 
-export function Logo({ size = "medium", showText = true, darkMode = false }: LogoProps) {
+export function Logo({ size = "medium", showText = true, darkMode = false, className = "" }: LogoProps) {
   const sizeMap = {
     small: "h-8 w-8",
     medium: "h-10 w-10",
@@ -15,8 +16,8 @@ export function Logo({ size = "medium", showText = true, darkMode = false }: Log
   };
 
   return (
-    <Link href="/" className="flex items-center gap-2">
-      <div className={`rounded-full overflow-hidden ${darkMode ? 'shadow-lg' : 'shadow-md'} ${darkMode ? 'bg-primary' : 'bg-primary'}`}>
+    <Link href="/" className={`flex items-center gap-2 ${className}`}>
+      <div className={`rounded-full overflow-hidden ${darkMode ? 'shadow-lg' : 'shadow-md'} bg-primary animate-pulse-soft`}>
         <img src={logo} alt="Worksta" className={`${sizeMap[size]}`} />
       </div>
       {showText && (
