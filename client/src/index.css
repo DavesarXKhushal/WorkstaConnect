@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -9,12 +9,12 @@
   }
 
   body {
-    @apply bg-black text-white font-sans antialiased;
-    font-family: 'Archivo', sans-serif;
+    @apply bg-white text-gray-900 antialiased;
+    font-family: 'Poppins', sans-serif;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    @apply font-extrabold tracking-tight;
+    @apply font-bold tracking-tight;
   }
 
   h1 {
@@ -41,14 +41,26 @@
   }
 
   .gradient-card {
-    @apply bg-gradient-to-br from-primary/20 to-blue-900/20 backdrop-blur-sm border border-primary/10;
+    @apply bg-gradient-to-tr from-blue-50 to-gray-50 shadow-md border border-gray-100;
   }
 
+  .section-title {
+    @apply text-4xl font-bold text-gray-900 mb-4;
+  }
+
+  .section-subtitle {
+    @apply text-lg text-gray-600 mb-12 max-w-3xl;
+  }
+  
   .btn-primary {
-    @apply bg-[#fdf568] text-black font-bold rounded-md px-6 py-3 hover:bg-yellow-300 transition-colors duration-300;
+    @apply bg-primary text-white font-semibold rounded-full px-6 py-3 hover:bg-blue-600 transition-colors duration-300 shadow-md;
+  }
+
+  .btn-secondary {
+    @apply bg-[#fdf568] text-gray-900 font-semibold rounded-full px-6 py-3 hover:bg-yellow-300 transition-colors duration-300 shadow-md;
   }
 
   .btn-outline {
-    @apply border border-white/20 text-white font-bold rounded-md px-6 py-3 hover:bg-white/10 transition-colors duration-300;
+    @apply border border-gray-300 text-gray-800 font-semibold rounded-full px-6 py-3 hover:bg-gray-50 transition-colors duration-300;
   }
 }

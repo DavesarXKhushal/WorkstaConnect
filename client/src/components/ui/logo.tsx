@@ -4,9 +4,10 @@ import logo from "../../assets/worksta-logo.png";
 interface LogoProps {
   size?: "small" | "medium" | "large";
   showText?: boolean;
+  darkMode?: boolean;
 }
 
-export function Logo({ size = "medium", showText = true }: LogoProps) {
+export function Logo({ size = "medium", showText = true, darkMode = false }: LogoProps) {
   const sizeMap = {
     small: "h-8 w-8",
     medium: "h-10 w-10",
@@ -15,13 +16,13 @@ export function Logo({ size = "medium", showText = true }: LogoProps) {
 
   return (
     <Link href="/" className="flex items-center gap-2">
-      <div className="rounded-md overflow-hidden bg-primary">
+      <div className={`rounded-full overflow-hidden ${darkMode ? 'shadow-lg' : 'shadow-md'} ${darkMode ? 'bg-primary' : 'bg-primary'}`}>
         <img src={logo} alt="Worksta" className={`${sizeMap[size]}`} />
       </div>
       {showText && (
-        <span className="font-extrabold tracking-tight text-2xl">
-          <span className="text-white">Work</span>
-          <span className="text-[#fdf568]">sta</span>
+        <span className="font-bold tracking-tight text-2xl">
+          <span className={darkMode ? "text-white" : "text-gray-900"}>Work</span>
+          <span className="text-primary">sta</span>
         </span>
       )}
     </Link>

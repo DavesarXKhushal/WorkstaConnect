@@ -1,61 +1,92 @@
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
-import { ChevronRight } from "lucide-react";
+import { ChevronRight, Calendar, Clock, DollarSign } from "lucide-react";
 
 const Hero = () => {
   return (
-    <section className="bg-black/95 pt-10 pb-20 md:py-24">
+    <section className="bg-white pt-12 pb-20 md:py-24">
       <div className="container">
-        <div className="flex flex-col lg:flex-row">
+        <div className="flex flex-col lg:flex-row items-center">
           {/* Text Content */}
-          <div className="lg:w-1/2 mb-16 lg:mb-0">
-            <h1 className="font-black uppercase leading-[0.9] mb-8">
-              WORK ANYTIME,<br />
-              GET PAID<br />
-              ON TIME.
+          <div className="lg:w-1/2 mb-16 lg:mb-0 pr-0 lg:pr-10">
+            <h1 className="font-bold text-gray-900 leading-[1.1] mb-8">
+              Find flexible shifts in<br />
+              <span className="text-primary">Singapore's top</span> F&B venues
             </h1>
-            <p className="text-xl text-white/80 mb-10 max-w-xl">
-              Worksta is the easiest way to pick up shifts at F&B businesses across Singapore. Work at nearby venues in your own time and get paid weekly.
+            <p className="text-xl text-gray-600 mb-10 max-w-xl">
+              Worksta is the easiest way to pick up shifts at restaurants, bars and cafes across Singapore. Work at nearby venues in your own time and get paid weekly.
             </p>
+            
+            <div className="flex flex-col md:flex-row gap-6 mb-12">
+              <div className="flex gap-3 items-start">
+                <div className="bg-blue-100 rounded-full p-2 mt-1">
+                  <Calendar className="h-5 w-5 text-primary" />
+                </div>
+                <div>
+                  <h3 className="font-semibold text-lg mb-1">Flexible schedule</h3>
+                  <p className="text-gray-600">Work when you want, where you want</p>
+                </div>
+              </div>
+              
+              <div className="flex gap-3 items-start">
+                <div className="bg-blue-100 rounded-full p-2 mt-1">
+                  <DollarSign className="h-5 w-5 text-primary" />
+                </div>
+                <div>
+                  <h3 className="font-semibold text-lg mb-1">Weekly payments</h3>
+                  <p className="text-gray-600">Get paid every Monday</p>
+                </div>
+              </div>
+            </div>
+            
             <div className="flex flex-col sm:flex-row gap-4">
               <Link href="/signup">
                 <Button className="btn-primary w-full sm:w-auto text-lg px-8 py-4">
-                  GET STARTED
+                  Get Started
                 </Button>
               </Link>
               <Link href="/faq">
                 <Button variant="outline" className="btn-outline w-full sm:w-auto text-lg">
-                  LEARN MORE <ChevronRight className="h-5 w-5 ml-1" />
+                  Learn More <ChevronRight className="h-5 w-5 ml-1" />
                 </Button>
               </Link>
             </div>
           </div>
 
           {/* Image and Payment Section */}
-          <div className="lg:w-1/2 lg:pl-8 relative">
-            <div className="grid grid-cols-2 gap-6">
-              {/* Phone mockup with app */}
-              <div className="col-span-2 md:col-span-1 relative">
-                <img 
-                  src="https://images.unsplash.com/photo-1621274147744-cfb5032294b4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" 
-                  alt="Chef working" 
-                  className="rounded-xl w-full h-[500px] object-cover" 
-                />
+          <div className="lg:w-1/2 relative">
+            <div className="relative">
+              <img 
+                src="https://images.unsplash.com/photo-1564314968236-88a37e068abb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+                alt="Barista at café" 
+                className="rounded-xl shadow-xl w-full object-cover h-[550px]" 
+              />
+              
+              {/* Floating Payment Card */}
+              <div className="absolute -bottom-10 -left-10 md:left-auto md:-right-10 z-10">
+                <PaymentCard />
               </div>
-
-              {/* Person working image */}
-              <div className="hidden md:block relative">
-                <div className="absolute top-0 -left-20">
-                  <PaymentCard />
-                </div>
-                <img 
-                  src="https://images.unsplash.com/photo-1608835291093-394b3ce6d0d8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80" 
-                  alt="Mobile app interface" 
-                  className="rounded-xl w-full h-[500px] object-cover mt-16"
-                />
+              
+              {/* Floating Stats Card */}
+              <div className="absolute top-10 -left-10 md:left-auto md:-right-10 z-10">
+                <StatsCard />
               </div>
             </div>
           </div>
+        </div>
+      </div>
+      
+      {/* Brands Bar */}
+      <div className="container mt-20">
+        <div className="text-center mb-8">
+          <p className="text-gray-500 text-sm font-medium uppercase tracking-wider">Trusted by Singapore's premium F&B businesses</p>
+        </div>
+        <div className="flex flex-wrap justify-center gap-12 opacity-70">
+          <p className="text-2xl font-bold text-gray-400">Culina</p>
+          <p className="text-2xl font-bold text-gray-400">Clos Pasoh</p>
+          <p className="text-2xl font-bold text-gray-400">Harry's</p>
+          <p className="text-2xl font-bold text-gray-400">Super Loco</p>
+          <p className="text-2xl font-bold text-gray-400">Raffles Hotel</p>
         </div>
       </div>
     </section>
@@ -64,7 +95,7 @@ const Hero = () => {
 
 const PaymentCard = () => {
   return (
-    <div className="bg-white rounded-xl p-5 w-[260px] shadow-xl">
+    <div className="bg-white rounded-xl p-5 w-[260px] shadow-xl border border-gray-100">
       <div className="flex items-center mb-4">
         <div className="w-12 h-12 rounded-full bg-blue-100 mr-3 flex items-center justify-center">
           <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -79,7 +110,7 @@ const PaymentCard = () => {
       
       <div className="mb-3">
         <div className="text-xs text-gray-500">Description</div>
-        <div className="text-sm font-bold text-gray-800">Weekend shift at Harry's Chijmes</div>
+        <div className="text-sm font-bold text-gray-800">Weekend shift at Harry's</div>
       </div>
       
       <div className="mb-1">
@@ -87,7 +118,35 @@ const PaymentCard = () => {
         <div className="text-sm font-bold text-gray-800">S$18/hr × 5 hours</div>
       </div>
       
-      <div className="text-2xl font-black text-gray-900 mt-2">S$90.00</div>
+      <div className="text-2xl font-bold text-gray-900 mt-2">S$90.00</div>
+    </div>
+  );
+};
+
+const StatsCard = () => {
+  return (
+    <div className="bg-white rounded-xl p-5 w-[220px] shadow-xl border border-gray-100">
+      <div className="flex items-center justify-between mb-4">
+        <span className="font-bold text-sm text-gray-700">This Week</span>
+        <span className="text-xs px-2 py-1 bg-green-100 text-green-800 rounded-full">+12%</span>
+      </div>
+      
+      <div className="space-y-4">
+        <div>
+          <div className="text-xs text-gray-500 mb-1">Hours Worked</div>
+          <div className="text-xl font-bold text-gray-800">18 hrs</div>
+        </div>
+        
+        <div>
+          <div className="text-xs text-gray-500 mb-1">Scheduled Shifts</div>
+          <div className="text-xl font-bold text-gray-800">5 shifts</div>
+        </div>
+        
+        <div>
+          <div className="text-xs text-gray-500 mb-1">Earnings</div>
+          <div className="text-xl font-bold text-green-600">S$324.00</div>
+        </div>
+      </div>
     </div>
   );
 };

@@ -13,35 +13,35 @@ const Navbar = () => {
   };
 
   return (
-    <header className="sticky top-0 z-50 backdrop-blur-sm bg-black/80 border-b border-white/10">
+    <header className="sticky top-0 z-50 bg-white shadow-sm">
       <div className="container mx-auto">
         <div className="flex justify-between items-center h-20">
-          {/* Logo */}
-          <Logo />
+          {/* Logo - Just show the logo without text */}
+          <Logo showText={false} size="large" />
           
           {/* Main Navigation - Desktop */}
-          <nav className="hidden md:flex items-center gap-2">
+          <nav className="hidden md:flex items-center gap-4">
+            <NavButton href="/" active={location === '/'}>
+              Home
+            </NavButton>
             <NavButton href="/find-work" active={location === '/find-work'}>
               Find work
             </NavButton>
             <NavButton href="/hire-staff" active={location === '/hire-staff'}>
               Hire staff
             </NavButton>
-            <NavButton href="/" active={location === '/'}>
-              Home
-            </NavButton>
             <NavButton href="/faq" active={location === '/faq'}>
-              Pro FAQ
+              FAQ
             </NavButton>
           </nav>
           
           {/* Auth Buttons */}
-          <div className="flex items-center gap-3">
-            <Link href="/login" className="hidden sm:inline-block text-white hover:text-[#fdf568] font-medium">
+          <div className="flex items-center gap-4">
+            <Link href="/login" className="hidden sm:inline-block text-gray-700 hover:text-primary font-medium">
               Log in
             </Link>
             <Link href="/signup" className="flex items-center">
-              <Button className="rounded-full bg-white text-black font-bold hover:bg-white/90">
+              <Button className="btn-primary rounded-full px-6 py-2 h-auto">
                 Get started <ChevronRight className="h-4 w-4 ml-1" />
               </Button>
             </Link>
@@ -49,7 +49,7 @@ const Navbar = () => {
             {/* Mobile menu button */}
             <button 
               type="button" 
-              className="md:hidden p-2 text-white"
+              className="md:hidden p-2 text-gray-700"
               onClick={toggleMobileMenu}
               aria-expanded={isMobileMenuOpen}
             >
@@ -61,22 +61,27 @@ const Navbar = () => {
         
         {/* Mobile menu */}
         {isMobileMenuOpen && (
-          <div className="md:hidden absolute left-0 right-0 bg-black/95 border-b border-white/10">
-            <div className="px-4 py-5 space-y-3">
-              <Link href="/find-work" className="block py-2 text-lg font-medium text-white hover:text-[#fdf568]">
-                Find work
-              </Link>
-              <Link href="/hire-staff" className="block py-2 text-lg font-medium text-white hover:text-[#fdf568]">
-                Hire staff
-              </Link>
-              <Link href="/" className="block py-2 text-lg font-medium text-white hover:text-[#fdf568]">
+          <div className="md:hidden absolute left-0 right-0 bg-white shadow-lg border-b border-gray-100">
+            <div className="px-6 py-5 space-y-3">
+              <Link href="/" className="block py-2 text-lg font-medium text-gray-800 hover:text-primary">
                 Home
               </Link>
-              <Link href="/faq" className="block py-2 text-lg font-medium text-white hover:text-[#fdf568]">
-                Pro FAQ
+              <Link href="/find-work" className="block py-2 text-lg font-medium text-gray-800 hover:text-primary">
+                Find work
               </Link>
-              <Link href="/login" className="block py-2 text-lg font-medium text-white hover:text-[#fdf568]">
+              <Link href="/hire-staff" className="block py-2 text-lg font-medium text-gray-800 hover:text-primary">
+                Hire staff
+              </Link>
+              <Link href="/faq" className="block py-2 text-lg font-medium text-gray-800 hover:text-primary">
+                FAQ
+              </Link>
+              <Link href="/login" className="block py-2 text-lg font-medium text-gray-800 hover:text-primary">
                 Log in
+              </Link>
+              <Link href="/signup" className="block py-2 mt-4">
+                <Button className="w-full btn-primary rounded-full py-2 h-auto">
+                  Get started
+                </Button>
               </Link>
             </div>
           </div>
@@ -93,14 +98,15 @@ interface NavButtonProps {
 }
 
 const NavButton = ({ href, active, children }: NavButtonProps) => {
+  const className = `px-4 py-2 font-medium rounded-full transition-colors ${
+    active 
+      ? 'text-primary font-semibold' 
+      : 'text-gray-700 hover:text-primary'
+  }`;
+  
   return (
-    <Link href={href}>
-      <Button 
-        variant={active ? "default" : "ghost"} 
-        className={`rounded-full px-4 ${active ? 'bg-white/20 text-white hover:bg-white/30' : 'text-white/80 hover:text-white hover:bg-white/10'}`}
-      >
-        {children}
-      </Button>
+    <Link href={href} className={className}>
+      {children}
     </Link>
   );
 };
