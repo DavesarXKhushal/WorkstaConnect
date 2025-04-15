@@ -4,158 +4,155 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { ChevronDown } from "lucide-react";
+import { useState, useEffect } from "react";
 
 const FAQ = () => {
-  const workerFAQs = [
+  const [activeSection, setActiveSection] = useState<string | null>(null);
+  
+  const commonFAQs = [
     {
-      question: "How do I sign up for Worksta?",
-      answer: "Simply click on the 'Get Started' button and follow the registration process. You'll need to provide some basic information, upload your profile photo, and complete a brief skills assessment."
-    },
-    {
-      question: "What types of jobs are available?",
-      answer: "Worksta offers a variety of F&B jobs including server, bartender, barista, cook, kitchen helper, dishwasher, and more. The available roles vary by venue and their specific needs."
-    },
-    {
-      question: "How much can I earn?",
-      answer: "Pay rates vary by role, venue, and shift timing. Most roles pay between S$13-$20 per hour, with specialized positions often paying more. You'll always see the exact pay rate before accepting any shift."
-    },
-    {
-      question: "When do I get paid?",
+      question: "How do I get paid?",
       answer: "All workers are paid weekly. Payments are processed every Monday for shifts completed the previous week and typically arrive in your bank account within 1-2 business days."
     },
     {
-      question: "Can I cancel a shift after I've accepted it?",
-      answer: "While we understand circumstances change, we ask that you only cancel shifts when absolutely necessary and provide as much notice as possible. Frequent cancellations may affect your profile rating and future shift opportunities."
+      question: "What if I don't show up for a shift?",
+      answer: "No-shows negatively impact businesses and other workers. If you can't make a shift, cancel with as much notice as possible. Repeated no-shows may result in account suspension."
     },
     {
-      question: "Do I need prior experience?",
-      answer: "Some roles require previous experience while others are open to beginners. Each job posting will clearly state the experience requirements so you can apply for shifts that match your skills."
+      question: "What if I need to cancel?",
+      answer: "We understand circumstances change. Please cancel shifts at least 24 hours in advance through the app. For last-minute cancellations, contact support immediately."
+    },
+    {
+      question: "What if I have friends I want to work with?",
+      answer: "You can refer friends to Worksta, and if they meet our qualification standards, you can coordinate to work the same shifts by both selecting them in your availability."
+    },
+    {
+      question: "What if the business wants to hire me after a shift?",
+      answer: "That's great news! If a business wants to hire you directly after your shift, they can do so without any additional fees or restrictions. We view this as a successful placement."
+    },
+    {
+      question: "Is it really that simple and easy to work a shift?",
+      answer: "Yes! Worksta simplifies the process of finding and booking F&B shifts. Browse available shifts, select ones that match your schedule and skills, show up on time, and get paid weekly."
     }
   ];
 
-  const businessFAQs = [
-    {
-      question: "How does hiring staff through Worksta work?",
-      answer: "After creating your business account, you can post shifts with details about the role, required skills, timing, and pay rate. Qualified workers will apply, and you can review their profiles and ratings before confirming the booking."
-    },
-    {
-      question: "What is the cost for businesses?",
-      answer: "Businesses pay only for the hours worked at the rate they set, plus a small service fee. There are no subscription costs or minimum commitments required to use Worksta."
-    },
-    {
-      question: "How quickly can I get staff?",
-      answer: "Many shifts are filled within hours of posting. For best results, we recommend posting shifts at least 48 hours in advance, though we can often accommodate same-day requests during peak hours."
-    },
-    {
-      question: "Are the workers vetted?",
-      answer: "Yes, all Worksta professionals undergo a verification process which includes identity verification, work eligibility checks, and skills assessment. They are also rated by previous employers after each shift."
-    },
-    {
-      question: "What if a worker doesn't show up?",
-      answer: "While this rarely happens due to our rating system, in the event a worker fails to show up, contact our support team immediately and we'll work to find a replacement as quickly as possible."
-    },
-    {
-      question: "Can I hire the same workers repeatedly?",
-      answer: "Absolutely! If you find workers who are a great fit for your business, you can add them to your 'Favorites' list and directly offer them shifts in the future."
-    }
-  ];
-
-  const paymentFAQs = [
-    {
-      question: "What payment methods are accepted?",
-      answer: "Businesses can pay using major credit cards, bank transfers, or PayNow. Workers receive payments directly to their bank accounts via FAST transfer."
-    },
-    {
-      question: "Are there any hidden fees?",
-      answer: "No, Worksta is completely transparent about all fees. Businesses pay the hourly rate plus a clearly displayed service fee. Workers receive the full hourly rate shown on the shift details."
-    },
-    {
-      question: "How are taxes handled?",
-      answer: "Worksta provides businesses with detailed records of all payments for accounting purposes. Workers are responsible for reporting their income according to local tax regulations."
-    }
-  ];
+  useEffect(() => {
+    // Fade in animation for the title
+    const timer = setTimeout(() => {
+      setActiveSection("title");
+    }, 200);
+    
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
-    <div className="container mx-auto px-4 py-12">
-      <div className="max-w-4xl mx-auto">
-        <h1 className="text-4xl font-bold mb-4 text-center">Frequently Asked Questions</h1>
-        <p className="text-xl text-gray-600 mb-12 text-center">
-          Find answers to common questions about using Worksta
-        </p>
-
-        <Tabs defaultValue="workers" className="mb-12">
-          <TabsList className="grid w-full grid-cols-3 mb-8">
-            <TabsTrigger value="workers">For Workers</TabsTrigger>
-            <TabsTrigger value="businesses">For Businesses</TabsTrigger>
-            <TabsTrigger value="payments">Payments</TabsTrigger>
-          </TabsList>
-          
-          <TabsContent value="workers">
-            <Accordion type="single" collapsible className="w-full">
-              {workerFAQs.map((faq, index) => (
-                <AccordionItem key={index} value={`worker-item-${index}`}>
-                  <AccordionTrigger className="text-left">
-                    {faq.question}
-                  </AccordionTrigger>
-                  <AccordionContent>
-                    {faq.answer}
-                  </AccordionContent>
-                </AccordionItem>
-              ))}
-            </Accordion>
-          </TabsContent>
-          
-          <TabsContent value="businesses">
-            <Accordion type="single" collapsible className="w-full">
-              {businessFAQs.map((faq, index) => (
-                <AccordionItem key={index} value={`business-item-${index}`}>
-                  <AccordionTrigger className="text-left">
-                    {faq.question}
-                  </AccordionTrigger>
-                  <AccordionContent>
-                    {faq.answer}
-                  </AccordionContent>
-                </AccordionItem>
-              ))}
-            </Accordion>
-          </TabsContent>
-          
-          <TabsContent value="payments">
-            <Accordion type="single" collapsible className="w-full">
-              {paymentFAQs.map((faq, index) => (
-                <AccordionItem key={index} value={`payment-item-${index}`}>
-                  <AccordionTrigger className="text-left">
-                    {faq.question}
-                  </AccordionTrigger>
-                  <AccordionContent>
-                    {faq.answer}
-                  </AccordionContent>
-                </AccordionItem>
-              ))}
-            </Accordion>
-          </TabsContent>
-        </Tabs>
-
-        <div className="text-center bg-gray-50 p-8 rounded-lg">
-          <h3 className="text-xl font-bold mb-3">Still have questions?</h3>
-          <p className="text-gray-600 mb-6">
-            Our support team is here to help with any other questions you might have.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href="mailto:support@worksta.sg"
-              className="inline-flex items-center justify-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-primary hover:bg-primary-dark focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
-            >
-              Email Support
-            </a>
-            <a
-              href="tel:+6565551234"
-              className="inline-flex items-center justify-center px-4 py-2 rounded-md shadow-sm text-sm font-medium text-primary bg-white border border-primary hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
-            >
-              Call +65 6555 1234
-            </a>
+    <div className="page-container">
+      <div className="bg-[#FFDFD3] py-20 md:py-28 rounded-b-3xl overflow-hidden">
+        <div className="container relative">
+          <div className="grid grid-cols-1 md:grid-cols-5 gap-8 items-center">
+            <div className={`md:col-span-3 ${activeSection === "title" ? "animate-slideRight" : "opacity-0"} transition-all duration-700`}>
+              <h1 className="text-5xl md:text-6xl font-black text-gray-900 mb-6 leading-tight">
+                Frequently<br />Asked<br />Questions
+              </h1>
+              <p className="text-xl text-gray-700 max-w-2xl mb-8">
+                Common questions on what it takes to be a Worksta Pro, and the answers to get you fully prepared.
+              </p>
+            </div>
+            
+            <div className="md:col-span-2 relative">
+              <img 
+                src="https://images.unsplash.com/photo-1545086421-168bb7447a4a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"
+                alt="F&B Professional preparing coffee" 
+                className="rounded-2xl shadow-xl w-full transform transition-all duration-700 hover:scale-105"
+              />
+            </div>
           </div>
+        </div>
+      </div>
+      
+      <div className="container py-16 md:py-24">
+        <div className="max-w-4xl mx-auto">
+          <div className="space-y-6 mb-16">
+            {commonFAQs.map((faq, index) => (
+              <FaqAccordion 
+                key={index}
+                question={faq.question}
+                answer={faq.answer}
+                index={index}
+              />
+            ))}
+          </div>
+          
+          <div className="mt-24 bg-gray-900 text-white p-10 md:p-16 rounded-2xl relative overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 via-indigo-600/20 to-purple-600/20 mix-blend-overlay"></div>
+            <div className="relative z-10">
+              <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
+                <div>
+                  <h3 className="text-3xl font-bold mb-3">Have more questions?</h3>
+                  <p className="text-gray-300 max-w-md">
+                    Our team is ready to help. Reach out to us and we'll get back to you as soon as possible.
+                  </p>
+                </div>
+                <div className="flex flex-col gap-4">
+                  <a 
+                    href="mailto:support@worksta.sg" 
+                    className="bg-white/10 hover:bg-white/20 text-white px-8 py-4 rounded-xl font-medium transition-colors"
+                  >
+                    Email our support team
+                  </a>
+                  <a 
+                    href="tel:+6565551234" 
+                    className="bg-white text-gray-900 px-8 py-4 rounded-xl font-medium hover:bg-gray-100 transition-colors"
+                  >
+                    Call +65 6555 1234
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+interface FaqAccordionProps {
+  question: string;
+  answer: string;
+  index: number;
+}
+
+const FaqAccordion = ({ question, answer, index }: FaqAccordionProps) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
+  
+  useEffect(() => {
+    // Staggered animation
+    const timer = setTimeout(() => {
+      setIsVisible(true);
+    }, 100 + index * 100);
+    
+    return () => clearTimeout(timer);
+  }, [index]);
+  
+  return (
+    <div className={`border-b border-gray-200 ${isVisible ? 'animate-slideUp' : 'opacity-0'} transition-all duration-500`}>
+      <button
+        className="w-full py-6 flex items-center justify-between focus:outline-none group"
+        onClick={() => setIsOpen(!isOpen)}
+        aria-expanded={isOpen}
+      >
+        <h3 className="text-2xl font-bold text-left text-gray-900">{question}</h3>
+        <ChevronDown 
+          className={`w-6 h-6 text-gray-700 transform transition-transform duration-300 ${isOpen ? 'rotate-180' : 'rotate-0'}`} 
+        />
+      </button>
+      <div 
+        className={`overflow-hidden transition-all duration-300 ease-in-out ${isOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}
+      >
+        <div className="pb-6 text-lg text-gray-600 pr-12">
+          {answer}
         </div>
       </div>
     </div>
