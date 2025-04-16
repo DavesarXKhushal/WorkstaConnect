@@ -5,34 +5,33 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { ChevronDown, Search, Award, Clock, DollarSign, Bell, Shield, Coffee } from "lucide-react";
-import { useState, useEffect } from "react";
-import { Input } from "@/components/ui/input";
+import { DollarSign, Clock, Shield, Coffee, MessageCircle, Sparkles } from "lucide-react";
 
 const FAQ = () => {
-  const [activeSection, setActiveSection] = useState<string | null>(null);
-  const [searchQuery, setSearchQuery] = useState("");
-  
   const faqCategories = [
     {
       icon: <DollarSign className="w-8 h-8 text-primary" />,
       title: "Payment & Earnings",
-      description: "Everything about getting paid and managing your earnings"
+      description: "Everything about getting paid and managing your earnings",
+      color: "from-blue-500/20 to-cyan-500/20"
     },
     {
       icon: <Clock className="w-8 h-8 text-primary" />,
       title: "Shifts & Scheduling",
-      description: "Information about booking and managing shifts"
+      description: "Information about booking and managing shifts",
+      color: "from-purple-500/20 to-pink-500/20"
     },
     {
       icon: <Shield className="w-8 h-8 text-primary" />,
       title: "Account & Security",
-      description: "Account management and security details"
+      description: "Account management and security details",
+      color: "from-green-500/20 to-teal-500/20"
     },
     {
       icon: <Coffee className="w-8 h-8 text-primary" />,
       title: "Working at Venues",
-      description: "Guidelines for working at different venues"
+      description: "Guidelines for working at different venues",
+      color: "from-orange-500/20 to-yellow-500/20"
     }
   ];
   
@@ -67,42 +66,26 @@ const FAQ = () => {
       category: "Working at Venues",
       answer: "Use the in-app reporting feature or contact support immediately. We take all reports seriously and will investigate promptly while maintaining confidentiality."
     }
-  ].filter(faq => 
-    faq.question.toLowerCase().includes(searchQuery.toLowerCase()) ||
-    faq.answer.toLowerCase().includes(searchQuery.toLowerCase())
-  );
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setActiveSection("title");
-    }, 200);
-    
-    return () => clearTimeout(timer);
-  }, []);
+  ];
 
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Hero Section */}
-      <div className="bg-white py-20 md:py-28 rounded-b-3xl shadow-sm relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-50/50 to-purple-50/50" />
+      <div className="bg-white py-20 md:py-28 rounded-b-[40px] shadow-sm relative overflow-hidden">
+        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48cGF0dGVybiBpZD0iZ3JpZCIgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBwYXR0ZXJuVW5pdHM9InVzZXJTcGFjZU9uVXNlIj48cGF0aCBkPSJNIDQwIDAgTCAwIDAgMCA0MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZTVlN2ViIiBzdHJva2Utd2lkdGg9IjEiLz48L3BhdHRlcm4+PC9kZWZzPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9InVybCgjZ3JpZCkiLz48L3N2Zz4=')] opacity-30" />
         <div className="container relative z-10">
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl md:text-5xl font-black mb-6 bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent">
-              Frequently Asked Questions
-            </h1>
-            <p className="text-xl text-gray-600 mb-12">
-              Everything you need to know about working with us. Can't find what you're looking for? Contact our support team.
-            </p>
-            <div className="relative max-w-2xl mx-auto">
-              <Search className="absolute left-4 top-3.5 h-5 w-5 text-gray-400" />
-              <Input
-                type="text"
-                placeholder="Search FAQ..."
-                className="pl-12 py-6 text-lg rounded-2xl shadow-sm"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-              />
+            <div className="inline-flex items-center bg-primary/10 px-4 py-2 rounded-full mb-6">
+              <Sparkles className="w-5 h-5 text-primary mr-2" />
+              <span className="text-primary font-medium">Got Questions?</span>
             </div>
+            <h1 className="text-4xl md:text-6xl font-black mb-6 bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent">
+              We've Got Answers
+            </h1>
+            <p className="text-xl text-gray-600">
+              Everything you need to know about working with us. 
+              Browse through our most frequently asked questions.
+            </p>
           </div>
         </div>
       </div>
@@ -111,11 +94,14 @@ const FAQ = () => {
       <div className="container py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {faqCategories.map((category, index) => (
-            <div key={index} className="bg-white p-6 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
-              <div className="mb-4 p-3 bg-primary/10 rounded-xl w-fit">
+            <div 
+              key={index} 
+              className="bg-white p-8 rounded-3xl shadow-sm hover:shadow-md transition-all transform hover:-translate-y-1 cursor-pointer group"
+            >
+              <div className={`mb-6 p-4 rounded-2xl bg-gradient-to-br ${category.color} w-fit group-hover:scale-110 transition-transform`}>
                 {category.icon}
               </div>
-              <h3 className="text-xl font-bold mb-2">{category.title}</h3>
+              <h3 className="text-xl font-bold mb-3">{category.title}</h3>
               <p className="text-gray-600">{category.description}</p>
             </div>
           ))}
@@ -124,17 +110,21 @@ const FAQ = () => {
 
       {/* FAQ Accordion */}
       <div className="container pb-24">
-        <div className="max-w-4xl mx-auto bg-white rounded-2xl shadow-sm p-8">
-          <Accordion type="single" collapsible className="space-y-4">
+        <div className="max-w-4xl mx-auto">
+          <Accordion type="single" collapsible className="space-y-6">
             {commonFAQs.map((faq, index) => (
-              <AccordionItem key={index} value={`item-${index}`} className="border rounded-xl px-6 py-2">
-                <AccordionTrigger className="text-lg hover:no-underline">
+              <AccordionItem 
+                key={index} 
+                value={`item-${index}`} 
+                className="border bg-white rounded-2xl px-6 py-2 shadow-sm hover:shadow-md transition-shadow"
+              >
+                <AccordionTrigger className="text-lg hover:no-underline py-4">
                   <div className="flex items-start text-left">
-                    <span className="text-primary font-semibold mr-2">{faq.category}</span>
+                    <span className="text-primary font-semibold mr-3">{faq.category}</span>
                     <span className="font-medium">{faq.question}</span>
                   </div>
                 </AccordionTrigger>
-                <AccordionContent className="text-gray-600 pt-4">
+                <AccordionContent className="text-gray-600 pt-4 pb-6">
                   {faq.answer}
                 </AccordionContent>
               </AccordionItem>
@@ -143,29 +133,34 @@ const FAQ = () => {
         </div>
 
         {/* Contact Support Section */}
-        <div className="max-w-4xl mx-auto mt-16 bg-gray-900 text-white p-10 rounded-2xl relative overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-purple-600/20 mix-blend-overlay" />
-          <div className="relative z-10">
-            <div className="flex flex-col md:flex-row items-center justify-between gap-8">
-              <div>
-                <h3 className="text-3xl font-bold mb-3">Still have questions?</h3>
-                <p className="text-gray-300 max-w-md">
-                  Can't find what you're looking for? Our support team is here to help 24/7.
-                </p>
-              </div>
-              <div className="flex flex-col gap-4">
-                <a 
-                  href="mailto:support@worksta.com" 
-                  className="bg-white/10 hover:bg-white/20 text-white px-8 py-4 rounded-xl font-medium transition-colors text-center"
-                >
-                  Contact Support
-                </a>
-                <a 
-                  href="tel:+6565551234" 
-                  className="bg-white text-gray-900 px-8 py-4 rounded-xl font-medium hover:bg-gray-100 transition-colors text-center"
-                >
-                  Call +65 6555 1234
-                </a>
+        <div className="max-w-4xl mx-auto mt-20">
+          <div className="bg-gradient-to-r from-primary to-purple-600 text-white p-12 rounded-3xl relative overflow-hidden">
+            <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48cGF0dGVybiBpZD0iZ3JpZCIgd2lkdGg9IjQwIiBoZWlnaHQ9IjQwIiBwYXR0ZXJuVW5pdHM9InVzZXJTcGFjZU9uVXNlIj48cGF0aCBkPSJNIDQwIDAgTCAwIDAgMCA0MCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMSkiIHN0cm9rZS13aWR0aD0iMSIvPjwvcGF0dGVybjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyaWQpIi8+PC9zdmc+')] opacity-20" />
+            <div className="relative z-10">
+              <div className="flex flex-col md:flex-row items-center justify-between gap-8">
+                <div className="flex-1">
+                  <div className="flex items-center mb-4">
+                    <MessageCircle className="w-6 h-6 mr-3" />
+                    <h3 className="text-2xl font-bold">Still have questions?</h3>
+                  </div>
+                  <p className="text-white/90 text-lg">
+                    Can't find what you're looking for? Our support team is here to help 24/7.
+                  </p>
+                </div>
+                <div className="flex flex-col gap-4 md:min-w-[240px]">
+                  <a 
+                    href="mailto:support@worksta.com" 
+                    className="bg-white/10 hover:bg-white/20 text-white px-8 py-4 rounded-xl font-medium transition-colors text-center"
+                  >
+                    Contact Support
+                  </a>
+                  <a 
+                    href="tel:+6565551234" 
+                    className="bg-white text-gray-900 px-8 py-4 rounded-xl font-medium hover:bg-opacity-90 transition-colors text-center"
+                  >
+                    Call +65 6555 1234
+                  </a>
+                </div>
               </div>
             </div>
           </div>
