@@ -1,341 +1,50 @@
 import { Link } from "wouter";
 import { Button } from "@/components/ui/button";
-import { ChevronRight } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+import { 
+  ChevronRight, 
+  MapPin, 
+  Clock, 
+  DollarSign, 
+  Calendar, 
+  ChefHat, 
+  CheckCircle2, 
+  Smartphone, 
+  Search, 
+  ArrowRight, 
+  Heart,
+  CreditCard,
+  Briefcase,
+  BookOpen,
+  Sparkles,
+  Award,
+  Star
+} from "lucide-react";
 
-const HowItWorks = () => {
+// Feature component for showing step features
+const Feature = ({ icon, title, description }: { icon: React.ReactNode, title: string, description: string }) => {
   return (
-    <section className="py-24 md:py-32 bg-gray-50">
-      <div className="container">
-        <h2 className="text-5xl md:text-6xl font-bold text-gray-900 mb-20 text-center">How it works</h2>
-        
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-6">
-          <StepCard 
-            stepNumber="1" 
-            title="Find businesses you like" 
-            description="Find restaurants with your preferred areas, roles, or working hours."
-            phoneImage="/images/app-browse.png" // This is a static image we'll replace later
-            bgColor="bg-blue-50"
-          >
-            {/* Phone mockup with browse UI */}
-            <PhoneMockup>
-              <div className="bg-white p-3 rounded-xl">
-                <div className="flex justify-between items-center mb-4">
-                  <div className="text-xs font-medium">Find more work</div>
-                  <div className="w-6 h-6 flex items-center justify-center rounded-full border border-gray-200">
-                    <span className="text-xs">⨯</span>
-                  </div>
-                </div>
-                
-                <h5 className="font-bold text-sm mb-4">Browse</h5>
-                
-                <div className="rounded-lg overflow-hidden mb-3 relative">
-                  <img 
-                    src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
-                    alt="Restaurant" 
-                    className="w-full h-24 object-cover"
-                  />
-                  <div className="absolute top-2 right-2 bg-white rounded-full w-6 h-6 flex items-center justify-center shadow-sm">
-                    <span className="text-xs">♡</span>
-                  </div>
-                </div>
-                
-                <div className="mb-3">
-                  <h6 className="font-bold text-xs">Harry's @ Resort World Sentosa</h6>
-                  <div className="flex text-[10px] text-gray-500 gap-1 mb-2">
-                    <span>★★★★★</span>
-                    <span>(55)</span>
-                  </div>
-                  <div className="text-[10px] text-gray-500">RWS, Singapore • 22 mins from you</div>
-                </div>
-                
-                <div className="flex justify-between items-center text-[10px] mb-4">
-                  <div>
-                    <span className="font-medium">Server</span> • <span className="font-bold">$18-22/hr</span>
-                  </div>
-                  <div className="bg-gray-100 px-2 py-1 rounded-full">10 shifts</div>
-                </div>
-                
-                <div className="rounded-lg overflow-hidden mb-3 relative">
-                  <img 
-                    src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
-                    alt="Restaurant" 
-                    className="w-full h-24 object-cover"
-                  />
-                  <div className="absolute top-2 right-2 bg-white rounded-full w-6 h-6 flex items-center justify-center shadow-sm">
-                    <span className="text-xs">♡</span>
-                  </div>
-                </div>
-                
-                <div className="mb-2">
-                  <h6 className="font-bold text-xs">Empress</h6>
-                  <div className="flex justify-between">
-                    <div className="text-[10px] text-gray-500">Asian Fusion</div>
-                    <div className="text-[10px] text-primary font-medium">VIEW</div>
-                  </div>
-                </div>
-                
-                <div className="grid grid-cols-4 gap-1 text-center pt-3 border-t border-gray-100">
-                  <div className="text-[10px]">
-                    <div className="font-bold">Explore</div>
-                  </div>
-                  <div className="text-[10px] text-gray-400">
-                    <div>Saved</div>
-                  </div>
-                  <div className="text-[10px] text-gray-400">
-                    <div>Shifts</div>
-                  </div>
-                  <div className="text-[10px] text-gray-400">
-                    <div>Profile</div>
-                  </div>
-                </div>
-              </div>
-            </PhoneMockup>
-          </StepCard>
-          
-          <StepCard 
-            stepNumber="2" 
-            title="Book shifts you want" 
-            description="Check the days that you can work and book these shifts."
-            phoneImage="/images/app-booking.png" // This is a static image we'll replace later
-            bgColor="bg-purple-50"
-          >
-            {/* Phone mockup with book shift UI */}
-            <PhoneMockup>
-              <div className="bg-white p-3 rounded-xl">
-                <div className="flex justify-between items-center mb-4">
-                  <div className="flex items-center">
-                    <div className="w-6 h-6 flex items-center justify-center rounded-full border border-gray-200 mr-2">
-                      <span className="text-xs">←</span>
-                    </div>
-                    <div className="text-xs font-medium">Reserve & Confirm</div>
-                  </div>
-                  <div className="w-6 h-6 flex items-center justify-center rounded-full border border-gray-200">
-                    <span className="text-xs">⨯</span>
-                  </div>
-                </div>
-                
-                <div className="mb-4">
-                  <div className="flex gap-1 mb-1">
-                    <div className="w-8 h-8 rounded-full bg-primary flex items-center justify-center text-white text-xs">
-                      PG
-                    </div>
-                    <div>
-                      <div className="text-xs font-medium">Prego</div>
-                      <div className="text-[10px] text-gray-500">Italian • Server • $18-24/hr</div>
-                    </div>
-                  </div>
-                  
-                  <div className="text-[10px] text-gray-500 mt-2">
-                    Available timing (showing all timeslots):
-                  </div>
-                </div>
-                
-                <div className="grid grid-cols-2 gap-2 mb-4">
-                  <div className="bg-blue-50 p-2 rounded-lg border border-blue-100">
-                    <div className="text-[10px] font-medium">Tue, 16 Apr</div>
-                    <div className="text-[10px]">10:00 AM - 11:00 PM</div>
-                    <div className="text-[10px] font-medium text-green-600">$25/hr</div>
-                  </div>
-                  <div className="bg-gray-50 p-2 rounded-lg border border-gray-100">
-                    <div className="text-[10px] font-medium">Wed, 17 Apr</div>
-                    <div className="text-[10px]">10:00 AM - 11:00 PM</div>
-                    <div className="text-[10px] font-medium">$20/hr</div>
-                  </div>
-                </div>
-                
-                <div className="mb-4">
-                  <div className="flex justify-between mb-2">
-                    <div className="text-[10px] font-medium">Shift requirements</div>
-                    <div className="text-[10px] text-green-600">All requirements met</div>
-                  </div>
-                  
-                  <div className="flex items-center mb-1">
-                    <div className="w-4 h-4 rounded-full bg-blue-100 flex items-center justify-center mr-2">
-                      <span className="text-[8px] text-blue-600">✓</span>
-                    </div>
-                    <div className="text-[10px]">Black uniform</div>
-                  </div>
-                  
-                  <div className="flex items-center">
-                    <div className="w-4 h-4 rounded-full bg-blue-100 flex items-center justify-center mr-2">
-                      <span className="text-[8px] text-blue-600">✓</span>
-                    </div>
-                    <div className="text-[10px]">Transport provided</div>
-                  </div>
-                </div>
-                
-                <div className="bg-gray-50 p-2 rounded-lg mb-4">
-                  <div className="text-[10px] font-medium mb-1">Want to join on Apr 17?</div>
-                  <div className="flex gap-2">
-                    <div className="bg-white px-3 py-1 rounded-lg border border-gray-200 text-[10px]">
-                      10:30 AM - 10:00 PM
-                    </div>
-                    <div className="text-[10px] py-1">
-                      More
-                    </div>
-                  </div>
-                </div>
-                
-                <button className="w-full bg-primary text-white text-xs font-medium py-2 rounded-lg">
-                  Reserve shifts
-                </button>
-              </div>
-            </PhoneMockup>
-          </StepCard>
-          
-          <StepCard 
-            stepNumber="3" 
-            title="Work and get paid every week" 
-            description="Add your bank account, show up, and work. Worksta credits your weekly pay to your bank account every Monday."
-            phoneImage="/images/app-payment.png" // This is a static image we'll replace later
-            bgColor="bg-green-50"
-          >
-            {/* Phone mockup with payment UI */}
-            <PhoneMockup>
-              <div className="bg-white p-3 rounded-xl">
-                <div className="flex justify-between items-center mb-4">
-                  <div className="flex items-center">
-                    <div className="w-6 h-6 flex items-center justify-center rounded-full border border-gray-200 mr-2">
-                      <span className="text-xs">←</span>
-                    </div>
-                  </div>
-                  <div className="w-6 h-6 flex items-center justify-center rounded-full border border-gray-200">
-                    <span className="text-xs">↗</span>
-                  </div>
-                </div>
-                
-                <div className="text-center mb-6">
-                  <div className="text-xs font-medium mb-2">Payment sent</div>
-                  <div className="flex justify-center mb-2">
-                    <div className="h-16 w-16 bg-gray-100 rounded-full flex items-center justify-center">
-                      <span className="text-2xl">💰</span>
-                    </div>
-                  </div>
-                  <div className="text-xl font-bold mb-1">$60.00</div>
-                  <div className="text-[10px] text-gray-500">Completed 3 hours @ $20/hr</div>
-                </div>
-                
-                <div className="bg-gray-50 rounded-lg p-3 mb-4">
-                  <div className="text-[10px] text-gray-500 mb-1">Payment date</div>
-                  <div className="text-xs font-medium mb-3">Mon, Apr 10, 2025</div>
-                  
-                  <div className="text-[10px] text-gray-500 mb-1">Transferred to</div>
-                  <div className="text-xs font-medium mb-3">DBS Bank ···· 1234</div>
-                  
-                  <div className="text-[10px] text-gray-500 mb-1">Rate</div>
-                  <div className="text-xs font-medium">$20/hr × 3 hours</div>
-                </div>
-                
-                <button className="w-full bg-gray-100 text-gray-700 text-xs font-medium py-2 rounded-lg mb-4">
-                  Back
-                </button>
-                
-                <div className="text-center text-[10px] text-gray-500">
-                  Need help with your payment?
-                </div>
-              </div>
-            </PhoneMockup>
-          </StepCard>
-        </div>
-        
-        <div className="mt-24 rounded-2xl overflow-hidden relative group">
-          {/* Animated background gradient */}
-          <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 opacity-90 transition-all duration-1000 group-hover:scale-105 bg-[length:200%_200%] bg-left-top group-hover:bg-right-bottom animate-gradient"></div>
-          
-          {/* Floating shapes */}
-          <div className="absolute top-10 left-[10%] w-16 h-16 rounded-full bg-white/10 animate-float-slow"></div>
-          <div className="absolute bottom-10 right-[15%] w-12 h-12 rounded-full bg-white/10 animate-float-delayed"></div>
-          <div className="absolute top-1/2 left-[80%] w-8 h-8 rounded-full bg-white/10 animate-float transform -translate-y-1/2"></div>
-          
-          {/* Content */}
-          <div className="relative z-10 p-10 md:p-16">
-            <div className="flex flex-col md:flex-row items-center justify-between">
-              <div className="mb-8 md:mb-0 relative">
-                <h3 className="text-4xl font-bold mb-4 text-white">Sign up and get shifts</h3>
-                <p className="text-white/80 max-w-xl text-lg">Join Worksta for free and earn more money now.</p>
-                
-                {/* Decorative element */}
-                <div className="absolute -left-8 -top-8 w-16 h-16 border-2 border-white/20 rounded-lg rotate-12 opacity-0 md:opacity-60 group-hover:opacity-100 transition-opacity"></div>
-                <div className="absolute -right-4 -bottom-4 w-12 h-12 border-2 border-white/20 rounded-full opacity-0 md:opacity-60 group-hover:opacity-100 transition-opacity"></div>
-              </div>
-              
-              <div className="relative">
-                <div className="absolute inset-0 bg-white/10 blur-xl rounded-full transform scale-75 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-                <Link href="/signup">
-                  <Button className="bg-white hover:bg-gray-100 text-gray-900 text-lg px-8 py-4 rounded-full shadow-xl transition-all hover:scale-105 hover:shadow-[0_0_20px_rgba(255,255,255,0.5)] relative z-10 group">
-                    <span className="relative z-10 flex items-center">
-                      GET STARTED 
-                      <ChevronRight className="h-5 w-5 ml-1 group-hover:translate-x-1 transition-transform" />
-                    </span>
-                  </Button>
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
+    <div className="flex items-start animate-fadeIn">
+      <div className="w-10 h-10 rounded-lg bg-gray-50 flex items-center justify-center mr-4 flex-shrink-0 transition-all duration-300 hover:scale-110">
+        {icon}
       </div>
-    </section>
-  );
-};
-
-interface StepCardProps {
-  stepNumber: string;
-  title: string;
-  description: string;
-  phoneImage?: string;
-  children: React.ReactNode;
-  bgColor?: string;
-}
-
-const StepCard = ({ stepNumber, title, description, phoneImage, children, bgColor = "bg-gray-50" }: StepCardProps) => {
-  const [isVisible, setIsVisible] = useState(false);
-  
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsVisible(true);
-    }, 100 + parseInt(stepNumber) * 300);
-    
-    return () => clearTimeout(timer);
-  }, [stepNumber]);
-  
-  return (
-    <div className={`flex flex-col items-center ${isVisible ? 'animate-fadeIn opacity-100' : 'opacity-0'} transition-all duration-1000`}>
-      <div className="text-center mb-8 relative group">
-        {/* Decorative circles */}
-        <div className={`absolute -top-8 -right-8 w-20 h-20 ${bgColor} rounded-full opacity-20 transition-transform duration-700 group-hover:scale-110`}></div>
-        <div className={`absolute -bottom-8 right-1/4 w-12 h-12 ${bgColor} rounded-full opacity-30 transition-transform duration-700 group-hover:scale-125`}></div>
-        
-        <div className="mb-16 relative inline-block transform perspective-1000 transition-all duration-700 hover:rotate-2">
-          {children}
-          
-          {/* Numbered step indicator with animated border */}
-          <div className={`absolute -bottom-8 -left-4 ${bgColor} w-16 h-16 rounded-full flex items-center justify-center font-bold text-3xl shadow-lg border-4 border-white text-gray-900 group-hover:border-primary/20 transition-colors duration-500 overflow-hidden`}>
-            <div className="relative z-10">{stepNumber}</div>
-            <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
-          </div>
-          
-          {/* Animated lights/stars around phone when hovered */}
-          <div className="absolute -right-4 -top-4 w-6 h-6 rounded-full bg-yellow-300/30 opacity-0 group-hover:opacity-100 animate-pulse-soft transition-opacity duration-500"></div>
-          <div className="absolute left-1/2 -bottom-6 w-4 h-4 rounded-full bg-blue-300/30 opacity-0 group-hover:opacity-100 animate-float transition-opacity duration-500 delay-300"></div>
-        </div>
-        
-        <div className="relative z-10">
-          <h3 className="text-2xl font-extrabold mb-3 text-gray-900 group-hover:text-primary transition-colors duration-300">{title}</h3>
-          <p className="text-gray-600 max-w-xs mx-auto group-hover:text-gray-700 transition-colors duration-300">{description}</p>
-        </div>
+      <div>
+        <h4 className="text-sm font-bold mb-1">{title}</h4>
+        <p className="text-gray-600 text-sm">{description}</p>
       </div>
     </div>
   );
 };
 
+// Phone mockup component
 interface PhoneMockupProps {
   children: React.ReactNode;
+  bgColor?: string;
 }
 
-const PhoneMockup = ({ children }: PhoneMockupProps) => {
+const PhoneMockup = ({ children, bgColor = "bg-blue-50" }: PhoneMockupProps) => {
   return (
-    <div className="relative w-[240px] h-[480px] bg-gray-900 rounded-[32px] p-3 shadow-xl transform transition-all duration-500 hover:rotate-1 hover:-translate-y-2 hover:shadow-2xl group">
+    <div className="relative w-[240px] h-[480px] bg-gray-900 rounded-[32px] p-3 shadow-xl transform transition-all duration-500 hover:rotate-1 hover:-translate-y-2 hover:shadow-2xl group mx-auto">
       {/* Phone notch */}
       <div className="absolute top-0 left-1/2 transform -translate-x-1/2 w-1/3 h-6 bg-gray-900 rounded-b-xl z-20">
         <div className="absolute top-1 left-1/2 transform -translate-x-1/2 w-1/3 h-1 bg-gray-800 rounded-full"></div>
@@ -350,6 +59,9 @@ const PhoneMockup = ({ children }: PhoneMockupProps) => {
       
       {/* Screen reflection overlay */}
       <div className="absolute inset-3 bg-gradient-to-tr from-transparent via-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-[24px] pointer-events-none z-10"></div>
+      
+      {/* Decorative background glow */}
+      <div className={`absolute -inset-4 ${bgColor} rounded-[40px] opacity-20 -z-10 transition-all duration-500 group-hover:opacity-40 group-hover:blur-lg`}></div>
       
       {/* Screen */}
       <div className="w-full h-full bg-gray-100 rounded-[24px] overflow-hidden relative">
@@ -378,7 +90,7 @@ const PhoneMockup = ({ children }: PhoneMockupProps) => {
             <div className="text-[8px]">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M4 18C4 18.7956 4.31607 19.5587 4.87868 20.1213C5.44129 20.6839 6.20435 21 7 21H17C17.7956 21 18.5587 20.6839 19.1213 20.1213C19.6839 19.5587 20 18.7956 20 18V15H4V18Z" fill="currentColor"/>
-                <path d="M7.99999 8H16L18.59 10.59C18.7785 10.7785 18.9854 10.9191 19.213 11.0042C19.4406 11.0892 19.6834 11.1165 19.9228 11.0837C20.1622 11.0509 20.3914 10.9589 20.5932 10.8145C20.795 10.6701 20.9642 10.4773 21.0865 10.2519C21.2087 10.0265 21.2809 9.77488 21.2974 9.51539C21.314 9.25591 21.2745 8.9964 21.1819 8.75526C21.0892 8.51412 20.9459 8.29696 20.7626 8.1209C20.5792 7.94485 20.3608 7.81481 20.12 7.74L16.12 6.25C15.9302 6.19156 15.7313 6.1719 15.5338 6.19208C15.3362 6.21226 15.144 6.27189 14.97 6.37C14.6201 6.56063 14.3541 6.87539 14.22 7.25H9.78C9.66234 6.9329 9.4402 6.66233 9.15213 6.47579C8.86406 6.28926 8.52316 6.19589 8.17499 6.21C7.82683 6.22411 7.49468 6.34497 7.22601 6.55661C6.95733 6.76825 6.76622 7.0591 6.68248 7.3826C6.59874 7.7061 6.62723 8.046 6.76351 8.35088C6.89979 8.65577 7.13657 8.91058 7.43991 9.07696C7.74326 9.24334 8.09766 9.30974 8.4458 9.26475C8.79394 9.21975 9.11734 9.06633 9.36999 8.83L9.79999 8H14.22L14.65 8.83C14.8209 8.99392 15.0285 9.11608 15.2574 9.18851C15.4862 9.26095 15.7301 9.28197 15.97 9.25L18 8.91L15.75 7.83C15.5 7.68 15.81 7.36 15.81 7.36L16.12 6.25L20.12 7.74L17.55 10.3C17.3955 10.4546 17.2059 10.5623 16.9964 10.6128C16.7868 10.6632 16.5661 10.6544 16.3613 10.5873C16.1565 10.5203 15.9756 10.3974 15.8379 10.2312C15.7002 10.0651 15.6109 9.86241 15.58 9.65L8.41999 9.64C8.30998 9.75944 8.17266 9.85152 8.01991 9.90908C7.86716 9.96664 7.70301 9.98814 7.53999 9.97199C7.37698 9.95584 7.21985 9.90242 7.08119 9.8161C6.94254 9.72977 6.8261 9.61302 6.74 9.47486C6.6539 9.33669 6.60051 9.18094 6.58399 9.01984C6.56747 8.85874 6.58829 8.6956 6.64496 8.5437C6.70164 8.39179 6.79258 8.25502 6.90997 8.14486C7.02736 8.03471 7.16789 7.95414 7.31999 7.91C7.56958 7.843 7.83364 7.85764 8.07419 7.95141C8.31475 8.04518 8.51808 8.21267 8.65 8.43L8.65999 8.45L9.58999 8.71L9.79999 8H9.64999L9.58999 8.71C9.58999 8.71 9.88999 9.34 9.64999 9.42L8.41999 9.64L8.32999 9.39C8.32999 9.39 7.99999 9.03 7.99999 8Z" fill="currentColor"/>
+                <path d="M20 4C20 3.20435 19.6839 2.44129 19.1213 1.87868C18.5587 1.31607 17.7956 1 17 1H7C6.20435 1 5.44129 1.31607 4.87868 1.87868C4.31607 2.44129 4 3.20435 4 4V15H20V4Z" fill="currentColor"/>
               </svg>
             </div>
           </div>
@@ -387,6 +99,642 @@ const PhoneMockup = ({ children }: PhoneMockupProps) => {
         {children}
       </div>
     </div>
+  );
+};
+
+const HowItWorks = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  const [activeStep, setActiveStep] = useState(1);
+  const sectionRef = useRef<HTMLElement>(null);
+  
+  // Animation on mount
+  useEffect(() => {
+    setTimeout(() => {
+      setIsVisible(true);
+    }, 300);
+    
+    // Auto-rotate through steps
+    const interval = setInterval(() => {
+      setActiveStep(prev => prev < 3 ? prev + 1 : 1);
+    }, 8000);
+    
+    return () => clearInterval(interval);
+  }, []);
+  
+  // Steps data
+  const steps = [
+    {
+      number: "1",
+      title: "Find businesses you like",
+      description: "Browse premium F&B businesses in Singapore based on your preferred locations, roles, and working hours. Filter and search for the perfect match.",
+      color: "from-blue-500 to-indigo-500",
+      bgColor: "bg-blue-50",
+      icon: <Search className="h-5 w-5 text-blue-500" />
+    },
+    {
+      number: "2",
+      title: "Book shifts you want",
+      description: "View shift details, requirements, and hourly rates. Pick the days that fit your schedule and book shifts with just a tap.",
+      color: "from-purple-500 to-fuchsia-500",
+      bgColor: "bg-purple-50",
+      icon: <Calendar className="h-5 w-5 text-purple-500" />
+    },
+    {
+      number: "3",
+      title: "Work and get paid weekly",
+      description: "Show up, work your shift, and receive payment directly to your bank account every Monday. Track earnings and manage your schedule in one place.",
+      color: "from-emerald-500 to-teal-500",
+      bgColor: "bg-green-50",
+      icon: <DollarSign className="h-5 w-5 text-green-500" />
+    }
+  ];
+  
+  return (
+    <section ref={sectionRef} className="py-24 md:py-32 bg-gray-50 relative overflow-hidden">
+      {/* Background decorative elements */}
+      <div className="absolute right-0 top-20 w-72 h-72 bg-blue-50 rounded-full opacity-50 -z-10"></div>
+      <div className="absolute -left-20 bottom-40 w-60 h-60 bg-purple-50 rounded-full opacity-40 -z-10"></div>
+      <div className="absolute left-1/3 top-1/4 w-12 h-12 bg-green-50 rounded-full opacity-30 -z-10"></div>
+      
+      <div className="container relative z-10">
+        <div className={`text-center mb-20 transform transition-all duration-1000 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
+          <div className="inline-block mb-4">
+            <div className="bg-primary/10 rounded-full py-1 px-3 text-sm text-primary font-medium flex items-center justify-center">
+              <CheckCircle2 className="h-4 w-4 mr-2" /> Simple Process
+            </div>
+          </div>
+          <h2 className="text-4xl md:text-5xl font-bold mb-6">How it works</h2>
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            Three simple steps to start working flexible shifts at Singapore's top F&B venues
+          </p>
+        </div>
+        
+        {/* Step navigation */}
+        <div className={`flex justify-center mb-16 transform transition-all duration-1000 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`} style={{ transitionDelay: '200ms' }}>
+          <div className="flex items-center">
+            {steps.map((step, index) => (
+              <div key={index} className="flex items-center">
+                <button 
+                  className={`relative flex flex-col items-center group ${activeStep === index + 1 ? 'scale-110' : ''}`}
+                  onClick={() => setActiveStep(index + 1)}
+                >
+                  <div className={`w-12 h-12 md:w-16 md:h-16 rounded-full flex items-center justify-center text-xl font-bold transition-all duration-300 ${
+                    activeStep === index + 1 
+                      ? `bg-gradient-to-r ${step.color} text-white shadow-xl` 
+                      : 'bg-white text-gray-400 border border-gray-200'
+                  }`}>
+                    {step.number}
+                    
+                    {/* Pulse effect for active step */}
+                    {activeStep === index + 1 && (
+                      <div className="absolute inset-0 rounded-full bg-gradient-to-r from-primary/0 to-primary/30 animate-ping opacity-75"></div>
+                    )}
+                  </div>
+                  
+                  <span className={`mt-2 text-xs font-medium md:text-sm transition-colors duration-300 ${
+                    activeStep === index + 1 ? 'text-primary' : 'text-gray-500'
+                  }`}>
+                    {step.title}
+                  </span>
+                </button>
+                
+                {index < steps.length - 1 && (
+                  <div className={`w-12 md:w-24 h-0.5 mx-2 transition-colors duration-300 ${
+                    index < activeStep - 1 ? 'bg-primary' : 'bg-gray-200'
+                  }`}></div>
+                )}
+              </div>
+            ))}
+          </div>
+        </div>
+        
+        {/* Step content */}
+        <div className={`grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-20 transform transition-all duration-1000 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`} style={{ transitionDelay: '300ms' }}>
+          <div>
+            <div className="mb-6">
+              <div className={`inline-flex items-center justify-center w-12 h-12 rounded-full bg-gradient-to-r ${steps[activeStep-1].color} text-white mb-4`}>
+                {steps[activeStep-1].icon}
+              </div>
+              <h3 className="text-3xl font-bold mb-4">{steps[activeStep-1].title}</h3>
+              <p className="text-gray-600">{steps[activeStep-1].description}</p>
+            </div>
+            
+            {/* Step-specific features */}
+            <div className="space-y-4">
+              {activeStep === 1 && (
+                <>
+                  <Feature 
+                    icon={<MapPin className="h-5 w-5 text-blue-500" />}
+                    title="Location-based matching"
+                    description="Find shifts close to your home or preferred areas in Singapore."
+                  />
+                  <Feature 
+                    icon={<Briefcase className="h-5 w-5 text-blue-500" />}
+                    title="Role filtering"
+                    description="Search for specific roles that match your skills and experience."
+                  />
+                  <Feature 
+                    icon={<Award className="h-5 w-5 text-blue-500" />}
+                    title="Premium venues"
+                    description="Work at Singapore's top-rated restaurants, bars, and hotels."
+                  />
+                </>
+              )}
+              
+              {activeStep === 2 && (
+                <>
+                  <Feature 
+                    icon={<Clock className="h-5 w-5 text-purple-500" />}
+                    title="Flexible scheduling"
+                    description="Choose shifts that fit around your existing commitments and lifestyle."
+                  />
+                  <Feature 
+                    icon={<CheckCircle2 className="h-5 w-5 text-purple-500" />}
+                    title="Instant confirmation"
+                    description="Receive immediate confirmation once your shift is booked."
+                  />
+                  <Feature 
+                    icon={<BookOpen className="h-5 w-5 text-purple-500" />}
+                    title="Detailed information"
+                    description="View shift requirements, dress code, and transport options before booking."
+                  />
+                </>
+              )}
+              
+              {activeStep === 3 && (
+                <>
+                  <Feature 
+                    icon={<CreditCard className="h-5 w-5 text-green-500" />}
+                    title="Secure payments"
+                    description="Receive payments directly to your bank account every Monday."
+                  />
+                  <Feature 
+                    icon={<Smartphone className="h-5 w-5 text-green-500" />}
+                    title="Earnings tracker"
+                    description="Monitor your earnings and upcoming payments in real-time."
+                  />
+                  <Feature 
+                    icon={<ChefHat className="h-5 w-5 text-green-500" />}
+                    title="Career growth"
+                    description="Build your reputation and expand your professional network."
+                  />
+                </>
+              )}
+            </div>
+            
+            <div className="mt-8">
+              <Link href="/signup">
+                <Button className="bg-primary text-gray-900 hover:bg-primary/90 group relative overflow-hidden">
+                  <span className="relative z-10 flex items-center">
+                    Get Started Today
+                    <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                  </span>
+                  <span className="absolute inset-0 bg-gradient-to-r from-primary/80 to-primary z-0 opacity-0 group-hover:opacity-100 transition-opacity"></span>
+                </Button>
+              </Link>
+            </div>
+          </div>
+          
+          <div className="relative">
+            {/* Phone frame with animated UI */}
+            <div className={`transition-opacity duration-700 ${activeStep === 1 ? 'opacity-100' : 'opacity-0 absolute inset-0 pointer-events-none'}`}>
+              <PhoneMockup bgColor={steps[0].bgColor}>
+                <div className="bg-white p-3 rounded-xl">
+                  <div className="flex justify-between items-center mb-4">
+                    <div className="text-xs font-medium">Find more work</div>
+                    <div className="w-6 h-6 flex items-center justify-center rounded-full border border-gray-200">
+                      <span className="text-xs">⨯</span>
+                    </div>
+                  </div>
+                  
+                  <div className="relative mb-4">
+                    <div className="absolute inset-y-0 left-2 flex items-center">
+                      <Search className="h-3 w-3 text-gray-400" />
+                    </div>
+                    <input type="text" className="w-full bg-gray-50 rounded-lg text-xs py-2 pl-7 pr-3 border border-gray-100" placeholder="Search venues, roles..." />
+                  </div>
+                  
+                  <div className="flex gap-2 mb-4 overflow-x-auto pb-1 scrollbar-hide">
+                    <div className="bg-blue-50 rounded-full px-2 py-1 text-[10px] text-blue-600 whitespace-nowrap flex-shrink-0">All venues</div>
+                    <div className="bg-gray-50 rounded-full px-2 py-1 text-[10px] text-gray-600 whitespace-nowrap flex-shrink-0">Near me</div>
+                    <div className="bg-gray-50 rounded-full px-2 py-1 text-[10px] text-gray-600 whitespace-nowrap flex-shrink-0">Highest paid</div>
+                    <div className="bg-gray-50 rounded-full px-2 py-1 text-[10px] text-gray-600 whitespace-nowrap flex-shrink-0">Top rated</div>
+                  </div>
+                  
+                  <h5 className="font-bold text-sm mb-3">Featured venues</h5>
+                  
+                  <div className="rounded-lg overflow-hidden mb-3 relative animate-fadeIn" style={{ animationDelay: '200ms' }}>
+                    <img 
+                      src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+                      alt="Restaurant" 
+                      className="w-full h-24 object-cover"
+                    />
+                    <div className="absolute top-2 right-2 bg-white rounded-full w-6 h-6 flex items-center justify-center shadow-sm">
+                      <Heart className="h-3 w-3 text-gray-400" />
+                    </div>
+                    <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/60 to-transparent h-10"></div>
+                    <div className="absolute bottom-2 left-2 flex items-center">
+                      <div className="bg-yellow-400 rounded-full px-1.5 py-0.5 text-[8px] text-white font-medium flex items-center">
+                        <Star className="h-2 w-2 mr-0.5 fill-white" /> 4.9
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="mb-3 animate-fadeIn" style={{ animationDelay: '300ms' }}>
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-1.5">
+                        <div className="w-6 h-6 rounded-full bg-gray-100 flex-shrink-0">
+                          <img src="https://upload.wikimedia.org/wikipedia/commons/0/0a/Harry%27s_Restaurant_Logo.jpg" alt="Harry's logo" className="w-full h-full object-cover rounded-full" />
+                        </div>
+                        <h6 className="font-bold text-xs">Harry's @ Boat Quay</h6>
+                      </div>
+                      <div className="bg-blue-50 px-1.5 py-0.5 rounded text-[8px] text-blue-600">New shifts</div>
+                    </div>
+                    <div className="flex text-[10px] text-gray-500 gap-1 mb-2">
+                      <MapPin className="h-2 w-2" />
+                      <span>Boat Quay, Singapore • 2.2 km away</span>
+                    </div>
+                    <div className="flex justify-between items-center">
+                      <div className="text-[10px]">
+                        <span className="font-medium">Server</span> • <span className="font-bold text-green-600">$18-22/hr</span>
+                      </div>
+                      <div className="bg-gray-100 px-2 py-0.5 rounded-full text-[8px] font-medium">10 shifts</div>
+                    </div>
+                  </div>
+                  
+                  <div className="rounded-lg overflow-hidden mb-3 relative animate-fadeIn" style={{ animationDelay: '400ms' }}>
+                    <img 
+                      src="https://images.unsplash.com/photo-1514933651103-005eec06c04b?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+                      alt="Restaurant" 
+                      className="w-full h-24 object-cover"
+                    />
+                    <div className="absolute top-2 right-2 bg-white rounded-full w-6 h-6 flex items-center justify-center shadow-sm">
+                      <Heart className="h-3 w-3 text-gray-400" />
+                    </div>
+                    <div className="absolute top-2 left-2">
+                      <div className="bg-primary rounded-full px-1.5 py-0.5 text-[8px] text-gray-900 font-medium flex items-center">
+                        <Sparkles className="h-2 w-2 mr-0.5" /> Featured
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="mb-4 animate-fadeIn" style={{ animationDelay: '500ms' }}>
+                    <div className="flex items-center justify-between">
+                      <div className="flex items-center gap-1.5">
+                        <div className="w-6 h-6 rounded-full bg-gray-100 flex-shrink-0">
+                          <img src="https://burntends.com.sg/wp-content/uploads/2015/02/burntendslogo.png" alt="Burnt Ends logo" className="w-full h-full object-cover rounded-full p-0.5" />
+                        </div>
+                        <h6 className="font-bold text-xs">Burnt Ends</h6>
+                      </div>
+                      <div className="text-[10px] text-primary font-medium">VIEW</div>
+                    </div>
+                    <div className="flex text-[10px] text-gray-500 gap-1">
+                      <span>Fine Dining • Michelin Starred</span>
+                    </div>
+                  </div>
+                  
+                  <div className="grid grid-cols-4 gap-1 text-center pt-3 border-t border-gray-100">
+                    <div className="text-[10px]">
+                      <div className="font-bold text-primary">Explore</div>
+                    </div>
+                    <div className="text-[10px] text-gray-400">
+                      <div>Saved</div>
+                    </div>
+                    <div className="text-[10px] text-gray-400">
+                      <div>Shifts</div>
+                    </div>
+                    <div className="text-[10px] text-gray-400">
+                      <div>Profile</div>
+                    </div>
+                  </div>
+                </div>
+              </PhoneMockup>
+            </div>
+            
+            <div className={`transition-opacity duration-700 ${activeStep === 2 ? 'opacity-100' : 'opacity-0 absolute inset-0 pointer-events-none'}`}>
+              <PhoneMockup bgColor={steps[1].bgColor}>
+                <div className="bg-white p-3 rounded-xl">
+                  <div className="flex justify-between items-center mb-4">
+                    <div className="flex items-center">
+                      <div className="w-6 h-6 flex items-center justify-center rounded-full border border-gray-200 mr-2">
+                        <ArrowRight className="h-3 w-3 -rotate-180" />
+                      </div>
+                      <div className="text-xs font-medium">Book Shift</div>
+                    </div>
+                    <div className="w-6 h-6 flex items-center justify-center rounded-full border border-gray-200">
+                      <span className="text-xs">⨯</span>
+                    </div>
+                  </div>
+                  
+                  <div className="mb-4 animate-fadeIn" style={{ animationDelay: '100ms' }}>
+                    <div className="flex items-start gap-3">
+                      <div className="w-12 h-12 rounded-lg overflow-hidden flex-shrink-0">
+                        <img 
+                          src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=800&q=80" 
+                          alt="Harry's" 
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
+                      <div>
+                        <div className="flex items-center gap-1 mb-0.5">
+                          <h5 className="font-bold text-sm">Harry's @ Boat Quay</h5>
+                          <div className="bg-yellow-400 rounded-full px-1 py-0.5 text-[8px] text-white font-medium flex items-center">
+                            <Star className="h-2 w-2 mr-0.5 fill-white" /> 4.9
+                          </div>
+                        </div>
+                        <div className="text-[10px] text-gray-500 flex items-center">
+                          <MapPin className="h-2 w-2 mr-0.5" /> Boat Quay, Singapore
+                        </div>
+                        <div className="text-[10px] text-gray-500 flex items-center mt-0.5">
+                          <Briefcase className="h-2 w-2 mr-0.5" /> Server • <span className="text-green-600 font-medium">$20/hr</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="mb-4 animate-fadeIn" style={{ animationDelay: '200ms' }}>
+                    <div className="flex justify-between items-center mb-2">
+                      <div className="text-xs font-medium">Available shifts</div>
+                      <div className="text-[10px] text-primary">View all</div>
+                    </div>
+                    
+                    <div className="grid grid-cols-1 gap-2">
+                      <div className="bg-primary/10 p-2 rounded-lg border border-primary/20 relative">
+                        <div className="absolute -right-1 -top-1 bg-green-500 rounded-full w-5 h-5 flex items-center justify-center border-2 border-white">
+                          <CheckCircle2 className="h-3 w-3 text-white" />
+                        </div>
+                        <div className="flex justify-between items-start">
+                          <div>
+                            <div className="text-[10px] font-medium">Friday, Apr 19</div>
+                            <div className="text-[10px] flex items-center">
+                              <Clock className="h-2 w-2 mr-0.5" /> 6:00 PM - 10:00 PM
+                            </div>
+                          </div>
+                          <div className="text-[10px] font-medium text-green-600">$22/hr</div>
+                        </div>
+                      </div>
+                      
+                      <div className="bg-gray-50 p-2 rounded-lg border border-gray-100">
+                        <div className="flex justify-between items-start">
+                          <div>
+                            <div className="text-[10px] font-medium">Saturday, Apr 20</div>
+                            <div className="text-[10px] flex items-center">
+                              <Clock className="h-2 w-2 mr-0.5" /> 5:00 PM - 11:00 PM
+                            </div>
+                          </div>
+                          <div className="text-[10px] font-medium">$20/hr</div>
+                        </div>
+                      </div>
+                      
+                      <div className="bg-gray-50 p-2 rounded-lg border border-gray-100">
+                        <div className="flex justify-between items-start">
+                          <div>
+                            <div className="text-[10px] font-medium">Sunday, Apr 21</div>
+                            <div className="text-[10px] flex items-center">
+                              <Clock className="h-2 w-2 mr-0.5" /> 12:00 PM - 6:00 PM
+                            </div>
+                          </div>
+                          <div className="text-[10px] font-medium">$22/hr</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="mb-4 animate-fadeIn" style={{ animationDelay: '300ms' }}>
+                    <div className="flex justify-between mb-2">
+                      <div className="text-xs font-medium">Shift requirements</div>
+                      <div className="text-[10px] text-green-600 flex items-center">
+                        <CheckCircle2 className="h-2 w-2 mr-0.5" /> All requirements met
+                      </div>
+                    </div>
+                    
+                    <div className="bg-gray-50 p-2 rounded-lg space-y-1.5">
+                      <div className="flex items-center">
+                        <div className="w-4 h-4 rounded-full bg-green-100 flex items-center justify-center mr-2">
+                          <CheckCircle2 className="h-2 w-2 text-green-600" />
+                        </div>
+                        <div className="text-[10px]">Black pants, white shirt</div>
+                      </div>
+                      
+                      <div className="flex items-center">
+                        <div className="w-4 h-4 rounded-full bg-green-100 flex items-center justify-center mr-2">
+                          <CheckCircle2 className="h-2 w-2 text-green-600" />
+                        </div>
+                        <div className="text-[10px]">Basic bartending/server experience</div>
+                      </div>
+                      
+                      <div className="flex items-center">
+                        <div className="w-4 h-4 rounded-full bg-green-100 flex items-center justify-center mr-2">
+                          <CheckCircle2 className="h-2 w-2 text-green-600" />
+                        </div>
+                        <div className="text-[10px]">Transport allowance provided</div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="bg-gray-50 p-3 rounded-lg mb-4 animate-fadeIn" style={{ animationDelay: '400ms' }}>
+                    <div className="flex items-center gap-2 mb-2">
+                      <Calendar className="h-3 w-3 text-primary" />
+                      <div className="text-[11px] font-medium">Booking summary - Friday, Apr 19</div>
+                    </div>
+                    
+                    <div className="flex justify-between items-center text-[10px] mb-1">
+                      <div className="text-gray-500">Shift duration</div>
+                      <div>4 hours (6:00 PM - 10:00 PM)</div>
+                    </div>
+                    
+                    <div className="flex justify-between items-center text-[10px] mb-1">
+                      <div className="text-gray-500">Hourly rate</div>
+                      <div>$22.00/hour</div>
+                    </div>
+                    
+                    <div className="flex justify-between items-center text-[10px] font-medium pt-1 border-t border-gray-200 mt-1">
+                      <div>Estimated earnings</div>
+                      <div className="text-green-600">$88.00</div>
+                    </div>
+                  </div>
+                  
+                  <div className="flex gap-3 animate-fadeIn" style={{ animationDelay: '500ms' }}>
+                    <button className="flex-1 bg-gray-100 text-gray-700 text-xs font-medium py-2.5 rounded-lg">
+                      Save for later
+                    </button>
+                    <button className="flex-1 bg-primary text-gray-900 text-xs font-medium py-2.5 rounded-lg flex items-center justify-center">
+                      Book shift <ArrowRight className="ml-1 h-3 w-3" />
+                    </button>
+                  </div>
+                </div>
+              </PhoneMockup>
+            </div>
+            
+            <div className={`transition-opacity duration-700 ${activeStep === 3 ? 'opacity-100' : 'opacity-0 absolute inset-0 pointer-events-none'}`}>
+              <PhoneMockup bgColor={steps[2].bgColor}>
+                <div className="bg-white p-3 rounded-xl">
+                  <div className="flex justify-between items-center mb-4">
+                    <div className="flex items-center">
+                      <div className="w-6 h-6 flex items-center justify-center rounded-full border border-gray-200 mr-2">
+                        <ArrowRight className="h-3 w-3 -rotate-180" />
+                      </div>
+                      <div className="text-xs font-medium">Payment Details</div>
+                    </div>
+                    <div className="w-6 h-6 flex items-center justify-center rounded-full border border-gray-200">
+                      <span className="text-xs">⨯</span>
+                    </div>
+                  </div>
+                  
+                  <div className="text-center mb-6 animate-fadeIn" style={{ animationDelay: '100ms' }}>
+                    <div className="inline-block p-1 bg-green-50 rounded-full mb-3">
+                      <div className="h-16 w-16 bg-green-100 rounded-full flex items-center justify-center">
+                        <CheckCircle2 className="h-8 w-8 text-green-500" />
+                      </div>
+                    </div>
+                    <div className="text-sm font-medium mb-1">Payment processed!</div>
+                    <div className="text-2xl font-bold mb-1">$88.00</div>
+                    <div className="text-[10px] text-gray-500">Harry's @ Boat Quay • Server • Apr 19</div>
+                  </div>
+                  
+                  <div className="bg-gray-50 rounded-lg p-3 mb-4 animate-fadeIn" style={{ animationDelay: '200ms' }}>
+                    <div className="flex justify-between items-center mb-3">
+                      <div className="text-xs font-medium">Payment details</div>
+                      <div className="bg-blue-50 px-2 py-0.5 rounded text-[10px] text-blue-600">Success</div>
+                    </div>
+                    
+                    <div className="grid grid-cols-2 gap-y-3 text-[10px]">
+                      <div className="text-gray-500">Date & Time</div>
+                      <div className="text-right">Apr 22, 2025 • 9:32 AM</div>
+                      
+                      <div className="text-gray-500">Payment method</div>
+                      <div className="text-right flex items-center justify-end">
+                        <CreditCard className="h-2.5 w-2.5 mr-1" /> Bank transfer
+                      </div>
+                      
+                      <div className="text-gray-500">Account</div>
+                      <div className="text-right">DBS Bank •••• 1234</div>
+                      
+                      <div className="text-gray-500">Reference</div>
+                      <div className="text-right">WRK-982365</div>
+                    </div>
+                  </div>
+                  
+                  <div className="mb-4 animate-fadeIn" style={{ animationDelay: '300ms' }}>
+                    <div className="text-xs font-medium mb-2">Earnings breakdown</div>
+                    
+                    <div className="border border-gray-100 rounded-lg overflow-hidden">
+                      <div className="p-2.5 flex justify-between items-center text-[10px]">
+                        <div className="flex items-center">
+                          <Clock className="h-3 w-3 text-gray-400 mr-1.5" />
+                          <span>4 hours @ $22.00/hr</span>
+                        </div>
+                        <div>$88.00</div>
+                      </div>
+                      
+                      <div className="p-2.5 flex justify-between items-center text-[10px] bg-gray-50 border-t border-gray-100">
+                        <div className="flex items-center">
+                          <DollarSign className="h-3 w-3 text-gray-400 mr-1.5" />
+                          <span>Platform fee</span>
+                        </div>
+                        <div>$0.00</div>
+                      </div>
+                      
+                      <div className="p-2.5 flex justify-between items-center text-[10px] font-medium border-t border-gray-100">
+                        <div>Total earned</div>
+                        <div className="text-green-600">$88.00</div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="animate-fadeIn" style={{ animationDelay: '400ms' }}>
+                    <div className="text-xs font-medium mb-2">Your next shifts</div>
+                    
+                    <div className="border border-gray-100 rounded-lg p-2.5 mb-3">
+                      <div className="flex items-center justify-between mb-1">
+                        <div className="flex items-center">
+                          <div className="w-6 h-6 rounded-full overflow-hidden mr-1.5">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/0/0a/Harry%27s_Restaurant_Logo.jpg" alt="Harry's" className="w-full h-full object-cover" />
+                          </div>
+                          <div className="text-[10px] font-medium">Harry's @ Boat Quay</div>
+                        </div>
+                        <div className="text-[9px] text-primary">View details</div>
+                      </div>
+                      
+                      <div className="text-[9px] text-gray-500 flex items-center mb-1">
+                        <Calendar className="h-2 w-2 mr-0.5" /> Saturday, Apr 20 • 5:00 PM - 11:00 PM
+                      </div>
+                      
+                      <div className="flex items-center justify-between text-[9px]">
+                        <div className="flex items-center">
+                          <Briefcase className="h-2 w-2 mr-0.5" /> Server
+                        </div>
+                        <div className="text-green-600 font-medium">$120.00 estimated</div>
+                      </div>
+                    </div>
+                    
+                    <button className="w-full bg-primary text-gray-900 text-xs font-medium py-2.5 rounded-lg flex items-center justify-center">
+                      Find more shifts <ArrowRight className="ml-1 h-3 w-3" />
+                    </button>
+                  </div>
+                </div>
+              </PhoneMockup>
+            </div>
+            
+            {/* Decorative elements */}
+            <div className="absolute -top-4 -right-4 w-20 h-20 border-4 border-primary/20 rounded-xl -z-10"></div>
+            <div className="absolute -bottom-4 -left-4 w-20 h-20 border-4 border-primary/20 rounded-xl -z-10"></div>
+            
+            {/* Floating badges */}
+            <div className="absolute top-10 -right-2 bg-white rounded-xl shadow-lg p-3 hidden md:flex items-center transform rotate-3 z-10 animate-float">
+              <CheckCircle2 className="h-4 w-4 text-green-500 mr-2" />
+              <div className="text-sm font-medium">Easy 3-step process</div>
+            </div>
+            
+            <div className="absolute -bottom-2 -left-2 bg-white rounded-xl shadow-lg p-3 hidden md:flex items-center transform -rotate-2 z-10 animate-float-delayed">
+              <div className="flex items-center bg-green-100 px-2 py-1 rounded-lg text-xs text-green-700 font-medium mr-2">
+                <DollarSign className="h-3 w-3 mr-1" /> $25/hr
+              </div>
+              <div className="text-sm font-medium">Premium rates</div>
+            </div>
+          </div>
+        </div>
+        
+        {/* CTA Section */}
+        <div className={`transform transition-all duration-1000 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`} style={{ transitionDelay: '400ms' }}>
+          <div className="mt-24 rounded-2xl overflow-hidden relative group">
+            {/* Animated background gradient */}
+            <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 opacity-90 transition-all duration-1000 group-hover:scale-105 bg-[length:200%_200%] bg-left-top group-hover:bg-right-bottom animate-gradient"></div>
+            
+            {/* Floating shapes */}
+            <div className="absolute top-10 left-[10%] w-16 h-16 rounded-full bg-white/10 animate-float-slow"></div>
+            <div className="absolute bottom-10 right-[15%] w-12 h-12 rounded-full bg-white/10 animate-float-delayed"></div>
+            <div className="absolute top-1/2 left-[80%] w-8 h-8 rounded-full bg-white/10 animate-float transform -translate-y-1/2"></div>
+            
+            {/* Content */}
+            <div className="relative z-10 p-10 md:p-16">
+              <div className="flex flex-col md:flex-row items-center justify-between">
+                <div className="mb-8 md:mb-0 relative">
+                  <h3 className="text-4xl font-bold mb-4 text-white">Sign up and get shifts</h3>
+                  <p className="text-white/80 max-w-xl text-lg">Join Worksta for free and start earning at Singapore's top F&B venues.</p>
+                  
+                  {/* Decorative element */}
+                  <div className="absolute -left-8 -top-8 w-16 h-16 border-2 border-white/20 rounded-lg rotate-12 opacity-0 md:opacity-60 group-hover:opacity-100 transition-opacity"></div>
+                  <div className="absolute -right-4 -bottom-4 w-12 h-12 border-2 border-white/20 rounded-full opacity-0 md:opacity-60 group-hover:opacity-100 transition-opacity"></div>
+                </div>
+                
+                <div className="relative">
+                  <div className="absolute inset-0 bg-white/10 blur-xl rounded-full transform scale-75 opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+                  <Link href="/signup">
+                    <Button className="bg-white hover:bg-gray-100 text-gray-900 text-lg px-8 py-4 rounded-full shadow-xl transition-all hover:scale-105 hover:shadow-[0_0_20px_rgba(255,255,255,0.5)] relative z-10 group">
+                      <span className="relative z-10 flex items-center">
+                        GET STARTED 
+                        <ChevronRight className="h-5 w-5 ml-1 group-hover:translate-x-1 transition-transform" />
+                      </span>
+                    </Button>
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   );
 };
 
