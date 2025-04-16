@@ -133,15 +133,18 @@ const FindWork = () => {
         <div className="absolute inset-0 bg-gradient-to-t from-blue-600/50" />
         <div className="container mx-auto px-4 py-20 relative z-10">
           <div className="text-center max-w-5xl mx-auto">
-            <div className="inline-flex items-center bg-blue-500/20 rounded-full px-6 py-2 mb-8">
-              <Sparkles className="h-5 w-5 text-yellow-300 mr-2" />
-              <span className="text-sm font-medium text-white">Latest opportunities updated daily | 50+ new shifts this week</span>
+            <div className="inline-flex items-center bg-white/30 backdrop-blur-sm rounded-full px-6 py-3 mb-8 shadow-lg">
+              <Sparkles className="h-5 w-5 text-yellow-400 mr-2 animate-pulse" />
+              <span className="text-sm font-semibold text-white">Latest opportunities updated daily | 50+ new shifts this week</span>
             </div>
             <h1 className="text-5xl md:text-6xl font-bold text-white mb-8 leading-tight">
               Find Premium Shifts at Top
-              <span className="text-yellow-300"> F&B Venues</span>
+              <span className="text-yellow-300 relative">
+                <span className="relative z-10"> F&B Venues</span>
+                <span className="absolute inset-x-0 bottom-2 h-3 bg-blue-400/20 -z-0"></span>
+              </span>
             </h1>
-            <p className="text-xl text-blue-100 mb-12 max-w-3xl mx-auto">
+            <p className="text-xl text-white mb-12 max-w-3xl mx-auto font-medium">
               Browse through exclusive opportunities at Singapore's finest restaurants and bars. 
               Get instant access to premium shifts with competitive rates.
             </p>
@@ -168,16 +171,16 @@ const FindWork = () => {
                   <Input
                     type="text"
                     placeholder="Search venues, roles, or cuisines..."
-                    className="pl-12 h-14 text-lg rounded-xl"
+                    className="pl-12 h-14 text-lg rounded-xl border-2 border-white/20 bg-white/95 backdrop-blur-sm focus:border-blue-400 transition-all shadow-lg hover:shadow-xl"
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                   />
-                  <Search className="absolute left-4 top-4 h-6 w-6 text-gray-400" />
+                  <Search className="absolute left-4 top-4 h-6 w-6 text-blue-600" />
                 </div>
 
                 <Select value={location} onValueChange={setLocation} className="col-span-3">
-                  <SelectTrigger className="h-14 text-lg rounded-xl">
-                    <MapPin className="h-5 w-5 mr-2 text-gray-500" />
+                  <SelectTrigger className="h-14 text-lg rounded-xl border-2 border-white/20 bg-white/95 backdrop-blur-sm hover:border-blue-400 transition-all shadow-lg hover:shadow-xl">
+                    <MapPin className="h-5 w-5 mr-2 text-blue-600" />
                     <SelectValue placeholder="Location" />
                   </SelectTrigger>
                   <SelectContent>
@@ -190,9 +193,9 @@ const FindWork = () => {
                   </SelectContent>
                 </Select>
 
-                <Button className="h-14 bg-primary hover:bg-primary/90 text-white col-span-4 text-lg font-semibold rounded-xl">
+                <Button className="h-14 bg-yellow-400 hover:bg-yellow-500 text-blue-900 col-span-4 text-lg font-bold rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
                   Find Shifts
-                  <ArrowRight className="ml-2 h-6 w-6" />
+                  <ArrowRight className="ml-2 h-6 w-6 group-hover:translate-x-1 transition-transform" />
                 </Button>
               </div>
 
@@ -215,22 +218,22 @@ const FindWork = () => {
                 </div>
               </div>
 
-              <div className="mt-6 flex flex-wrap items-center justify-center gap-6 text-sm text-gray-600">
-                <div className="flex items-center">
-                  <Building2 className="h-4 w-4 mr-2 text-primary" />
-                  Premium venues
+              <div className="mt-8 flex flex-wrap items-center justify-center gap-6">
+                <div className="flex items-center bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full shadow-md hover:shadow-lg transition-all hover:scale-105 cursor-pointer">
+                  <Building2 className="h-5 w-5 mr-2 text-blue-600" />
+                  <span className="font-medium text-blue-900">Premium venues</span>
                 </div>
-                <div className="flex items-center">
-                  <Clock className="h-4 w-4 mr-2 text-primary" />
-                  Flexible hours
+                <div className="flex items-center bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full shadow-md hover:shadow-lg transition-all hover:scale-105 cursor-pointer">
+                  <Clock className="h-5 w-5 mr-2 text-blue-600" />
+                  <span className="font-medium text-blue-900">Flexible hours</span>
                 </div>
-                <div className="flex items-center">
-                  <DollarSign className="h-4 w-4 mr-2 text-primary" />
-                  Weekly payments
+                <div className="flex items-center bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full shadow-md hover:shadow-lg transition-all hover:scale-105 cursor-pointer">
+                  <DollarSign className="h-5 w-5 mr-2 text-blue-600" />
+                  <span className="font-medium text-blue-900">Weekly payments</span>
                 </div>
-                <div className="flex items-center">
-                  <Award className="h-4 w-4 mr-2 text-primary" />
-                  Top-rated employers
+                <div className="flex items-center bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full shadow-md hover:shadow-lg transition-all hover:scale-105 cursor-pointer">
+                  <Award className="h-5 w-5 mr-2 text-blue-600" />
+                  <span className="font-medium text-blue-900">Top-rated employers</span>
                 </div>
               </div>
             </Card>
