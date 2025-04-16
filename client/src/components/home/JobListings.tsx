@@ -1,7 +1,9 @@
+
 import { useState, useEffect } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
 import { Clock, MapPin, DollarSign, Calendar, Star, Search, ArrowRight, Heart, Award, Utensils, ChefHat, CalendarIcon, CheckCircle2, Sparkles } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
 
 interface Shift {
   id: number;
@@ -21,6 +23,7 @@ interface Shift {
   startTime?: string;
   endTime?: string;
   description?: string;
+  badges?: string[];
 }
 
 const mockShifts: Shift[] = [
@@ -41,7 +44,8 @@ const mockShifts: Shift[] = [
     roles: ["Server", "Host"],
     startTime: "6:00 PM",
     endTime: "11:00 PM",
-    description: "Upscale French dining experience"
+    description: "Upscale French dining experience",
+    badges: ["Top Rated", "Urgent"]
   },
   {
     id: 2,
@@ -60,7 +64,8 @@ const mockShifts: Shift[] = [
     roles: ["Bartender"],
     startTime: "7:00 PM",
     endTime: "1:00 AM",
-    description: "Vibrant riverside bar atmosphere"
+    description: "Vibrant riverside bar atmosphere",
+    badges: ["High Pay", "Weekend"]
   },
   {
     id: 3,
@@ -78,7 +83,8 @@ const mockShifts: Shift[] = [
     roles: ["Server", "Runner"],
     startTime: "5:00 PM",
     endTime: "10:00 PM",
-    description: "Vibrant Mexican dining concept"
+    description: "Vibrant Mexican dining concept",
+    badges: ["Popular"]
   },
   {
     id: 4,
@@ -96,7 +102,8 @@ const mockShifts: Shift[] = [
     roles: ["Host", "Server"],
     startTime: "11:00 AM",
     endTime: "4:00 PM",
-    description: "Sophisticated casual dining venue"
+    description: "Sophisticated casual dining venue",
+    badges: ["Flexible Hours"]
   }
 ];
 
@@ -110,7 +117,10 @@ const JobListings = () => {
     <section className="py-16 bg-gray-50">
       <div className="container mx-auto px-6">
         <div className="flex justify-between items-center mb-8">
-          <h2 className="text-2xl font-bold">New shifts this week</h2>
+          <div>
+            <h2 className="text-2xl font-bold mb-2">New shifts this week</h2>
+            <p className="text-gray-600">Find your perfect shift from our curated selection</p>
+          </div>
           <Button variant="outline" className="text-sm">
             View all shifts <ArrowRight className="ml-2 h-4 w-4" />
           </Button>
@@ -118,7 +128,7 @@ const JobListings = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
           {shifts.map((shift) => (
-            <div key={shift.id} className="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow overflow-hidden group">
+            <div key={shift.id} className="bg-white rounded-xl shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden group">
               <div className="relative aspect-[4/3]">
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10"></div>
                 <img 
@@ -137,7 +147,7 @@ const JobListings = () => {
 
                 {shift.logoUrl && (
                   <div className="absolute -bottom-6 left-4 z-20">
-                    <div className="bg-white rounded-full p-1.5 shadow-lg h-12 w-12">
+                    <div className="bg-white rounded-full p-1.5 shadow-lg h-12 w-12 border-2 border-white">
                       <img 
                         src={shift.logoUrl} 
                         alt={`${shift.businessName} logo`}
@@ -153,6 +163,14 @@ const JobListings = () => {
                     <span className="text-xs font-medium">{shift.rating}</span>
                   </div>
                 )}
+
+                <Button 
+                  variant="ghost" 
+                  size="icon" 
+                  className="absolute right-3 bottom-3 z-20 h-8 w-8 rounded-full bg-white/90 hover:bg-white hover:text-red-500"
+                >
+                  <Heart className="h-4 w-4" />
+                </Button>
               </div>
 
               <div className="p-5 pt-8">
@@ -168,22 +186,32 @@ const JobListings = () => {
                   </div>
                 </div>
 
-                <div className="space-y-2">
+                <div className="space-y-3">
                   <div className="flex justify-between items-center">
                     <span className="text-sm font-medium">{shift.role}</span>
                     <span className="text-green-600 font-medium">S${shift.hourlyRate}/hr</span>
                   </div>
 
-                  <div className="text-xs text-gray-600 space-y-1">
+                  <div className="text-xs text-gray-600 space-y-1.5">
                     <div className="flex items-center">
                       <Clock className="h-3.5 w-3.5 mr-1.5 text-gray-400" />
                       {shift.startTime} - {shift.endTime}
                     </div>
                     <div className="flex items-center">
                       <Calendar className="h-3.5 w-3.5 mr-1.5 text-gray-400" />
-                      {shift.shifts} shifts available
+                      {shift.date}
                     </div>
                   </div>
+
+                  {shift.badges && (
+                    <div className="flex gap-2 flex-wrap mt-3">
+                      {shift.badges.map((badge) => (
+                        <Badge key={badge} variant="secondary" className="text-xs">
+                          {badge}
+                        </Badge>
+                      ))}
+                    </div>
+                  )}
                 </div>
 
                 <Button className="w-full mt-4 bg-primary hover:bg-primary/90">
