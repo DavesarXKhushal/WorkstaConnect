@@ -176,7 +176,7 @@ const FindWork = () => {
           <div className="absolute -right-10 -top-10 w-72 h-72 bg-white/10 rounded-full"></div>
           <div className="absolute left-1/4 -bottom-20 w-60 h-60 bg-white/10 rounded-full"></div>
         </div>
-        
+
         <div className="container relative z-10 pt-16 pb-24 px-4 sm:px-6 lg:px-8 mx-auto">
           <div className="text-center">
             <div className="inline-block mb-6">
@@ -184,15 +184,15 @@ const FindWork = () => {
                 <Sparkles size={16} className="mr-2" /> Singapore's Premier F&B Job Platform
               </div>
             </div>
-            
+
             <h1 className="text-4xl md:text-6xl font-bold text-white mb-6 animate-fadeIn">Find Flexible Shifts</h1>
             <p className="text-xl md:text-2xl text-white/90 max-w-2xl mx-auto mb-10 animate-fadeIn">
               Browse and book shifts at Singapore's top F&B venues instantly
             </p>
-            
+
             {/* Quick Search Box */}
-            <div className={`max-w-3xl mx-auto bg-white rounded-xl shadow-xl p-6 relative transform transition-all duration-1000 ${isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}>
-              <div className="flex flex-col md:flex-row gap-4">
+            <div className={`max-w-4xl mx-auto bg-white/95 backdrop-blur-lg rounded-2xl shadow-2xl p-8 relative transform transition-all duration-1000 ${isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'} border border-gray-100`}>
+              <div className="flex flex-col md:flex-row gap-6">
                 <div className="flex-1">
                   <div className="relative">
                     <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -213,7 +213,7 @@ const FindWork = () => {
                     </Select>
                   </div>
                 </div>
-                
+
                 <div className="flex-1">
                   <div className="relative">
                     <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -233,12 +233,12 @@ const FindWork = () => {
                     </Select>
                   </div>
                 </div>
-                
+
                 <Button className="bg-primary hover:bg-primary/90 text-gray-900 font-semibold py-2 px-6 rounded-lg shadow-md hover:shadow-lg transition-all hover:scale-105">
                   <Search size={18} className="mr-2" /> Find Shifts
                 </Button>
               </div>
-              
+
               <div className="flex flex-wrap gap-2 mt-4 justify-center">
                 <div className="text-xs bg-blue-100 text-blue-800 rounded-full px-3 py-1 font-medium flex items-center">
                   <Star size={12} className="mr-1" /> Top-rated venues
@@ -266,14 +266,14 @@ const FindWork = () => {
                 {activeFilters > 0 && ` • ${activeFilters} filter${activeFilters !== 1 ? 's' : ''} applied`}
               </p>
             </div>
-            
+
             <div className="mt-4 md:mt-0">
               <Button variant="outline" className="flex items-center gap-2">
                 <Filter size={16} /> Advanced Filters
               </Button>
             </div>
           </div>
-          
+
           <Card className="mb-8 border border-gray-200 shadow-sm hover:shadow-md transition-shadow">
             <CardHeader className="pb-2">
               <CardTitle className="text-xl flex items-center">
@@ -360,7 +360,7 @@ const FindWork = () => {
           {filteredShifts.map((shift, index) => (
             <div
               key={shift.id}
-              className={`bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1 group transform ${isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'}`}
+              className={`bg-white/95 backdrop-blur-sm rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1.5 group transform ${isLoaded ? 'translate-y-0 opacity-100' : 'translate-y-10 opacity-0'} border border-gray-100`}
               style={{ transitionDelay: `${index * 100}ms` }}
             >
               {shift.featured && (
@@ -370,7 +370,7 @@ const FindWork = () => {
                   </div>
                 </div>
               )}
-              
+
               <div className="relative">
                 <img
                   src={shift.imageUrl}
@@ -378,13 +378,13 @@ const FindWork = () => {
                   className="w-full h-48 object-cover transition-transform duration-700 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-                
+
                 {shift.logoUrl && (
                   <div className="absolute bottom-4 left-4 bg-white rounded-full h-12 w-12 flex items-center justify-center p-1 shadow-md">
                     <img src={shift.logoUrl} alt={`${shift.businessName} logo`} className="max-h-10 max-w-10 object-contain rounded-full" />
                   </div>
                 )}
-                
+
                 <div className="absolute bottom-4 right-4 flex items-center bg-white/90 backdrop-blur-sm rounded-full py-1 px-2 shadow-sm">
                   {shift.rating && (
                     <div className="flex items-center text-yellow-500 text-sm font-medium">
@@ -394,7 +394,7 @@ const FindWork = () => {
                   )}
                 </div>
               </div>
-              
+
               <div className="p-6">
                 <div className="flex justify-between items-start mb-3">
                   <div>
@@ -415,20 +415,20 @@ const FindWork = () => {
                       S${shift.hourlyRate}/hr
                     </span>
                   </div>
-                  
+
                   {shift.date && (
                     <div className="flex items-center text-sm text-gray-600 mb-2">
                       <Calendar size={14} className="mr-1" />
                       {shift.date}
                     </div>
                   )}
-                  
+
                   <div className="flex items-center text-sm text-gray-600">
                     <Clock size={14} className="mr-1" />
                     {shift.shifts} {shift.shifts === 1 ? 'shift' : 'shifts'} available
                   </div>
                 </div>
-                
+
                 {shift.requirements && shift.requirements.length > 0 && (
                   <div className="mb-4">
                     <div className="text-sm font-medium mb-2">Requirements:</div>
@@ -476,7 +476,7 @@ const FindWork = () => {
         {/* CTA Section */}
         <div className="mt-16 mb-8 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 rounded-2xl overflow-hidden relative">
           <div className="absolute inset-0 bg-[length:20px_20px] opacity-10" style={{ backgroundImage: 'radial-gradient(circle, white 1px, transparent 1px)' }}></div>
-          
+
           <div className="relative z-10 p-10 md:p-16">
             <div className="flex flex-col md:flex-row items-center justify-between">
               <div className="mb-8 md:mb-0 text-center md:text-left">
@@ -493,13 +493,13 @@ const FindWork = () => {
             </div>
           </div>
         </div>
-        
+
         {/* Trust Indicators */}
         <div className="py-8 border-t border-gray-200">
           <div className="text-center mb-6">
             <h3 className="text-gray-400 text-sm font-medium uppercase tracking-wider">Trusted by Singapore's premium F&B businesses</h3>
           </div>
-          
+
           <div className="flex flex-wrap justify-center items-center gap-8 opacity-70">
             <img src="https://upload.wikimedia.org/wikipedia/commons/0/0a/Harry%27s_Restaurant_Logo.jpg" alt="Harry's Logo" className="h-10 object-contain" />
             <img src="https://burntends.com.sg/wp-content/uploads/2015/02/burntendslogo.png" alt="Burnt Ends Logo" className="h-8 object-contain" />
