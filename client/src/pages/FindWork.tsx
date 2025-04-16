@@ -170,7 +170,7 @@ const FindWork = () => {
                 <div className="relative col-span-5">
                   <Input
                     type="text"
-                    placeholder="Search venues, roles, or cuisines..."
+                    placeholder="Search venues, roles, or locations..."
                     className="pl-12 h-14 text-lg rounded-xl border-2 border-white/20 bg-white/95 backdrop-blur-sm focus:border-blue-400 transition-all shadow-lg hover:shadow-xl"
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
