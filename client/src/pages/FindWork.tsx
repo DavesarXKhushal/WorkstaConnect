@@ -131,10 +131,10 @@ const FindWork = () => {
                     <SelectValue placeholder="Location" />
                   </SelectTrigger>
                   <SelectContent>
-                    <SelectItem value="">All locations</SelectItem>
-                    <SelectItem value="Outram Park">Outram Park</SelectItem>
-                    <SelectItem value="City Hall">City Hall</SelectItem>
-                    <SelectItem value="Robertson Quay">Robertson Quay</SelectItem>
+                    <SelectItem value="all">All locations</SelectItem>
+                    <SelectItem value="outram-park">Outram Park</SelectItem>
+                    <SelectItem value="city-hall">City Hall</SelectItem>
+                    <SelectItem value="robertson-quay">Robertson Quay</SelectItem>
                   </SelectContent>
                 </Select>
 
@@ -160,7 +160,7 @@ const FindWork = () => {
                 <SelectValue placeholder="Role" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="">All roles</SelectItem>
+                <SelectItem value="all">All roles</SelectItem>
                 <SelectItem value="Server">Server</SelectItem>
                 <SelectItem value="Cook">Cook</SelectItem>
                 <SelectItem value="Bartender">Bartender</SelectItem>
