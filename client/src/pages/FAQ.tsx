@@ -1,44 +1,78 @@
+
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, Search, Award, Clock, DollarSign, Bell, Shield, Coffee } from "lucide-react";
 import { useState, useEffect } from "react";
+import { Input } from "@/components/ui/input";
 
 const FAQ = () => {
   const [activeSection, setActiveSection] = useState<string | null>(null);
+  const [searchQuery, setSearchQuery] = useState("");
+  
+  const faqCategories = [
+    {
+      icon: <DollarSign className="w-8 h-8 text-primary" />,
+      title: "Payment & Earnings",
+      description: "Everything about getting paid and managing your earnings"
+    },
+    {
+      icon: <Clock className="w-8 h-8 text-primary" />,
+      title: "Shifts & Scheduling",
+      description: "Information about booking and managing shifts"
+    },
+    {
+      icon: <Shield className="w-8 h-8 text-primary" />,
+      title: "Account & Security",
+      description: "Account management and security details"
+    },
+    {
+      icon: <Coffee className="w-8 h-8 text-primary" />,
+      title: "Working at Venues",
+      description: "Guidelines for working at different venues"
+    }
+  ];
   
   const commonFAQs = [
     {
+      category: "Payment & Earnings",
       question: "How do I get paid?",
-      answer: "All workers are paid weekly. Payments are processed every Monday for shifts completed the previous week and typically arrive in your bank account within 1-2 business days."
+      answer: "All workers are paid weekly. Payments are processed every Monday for shifts completed the previous week and typically arrive in your bank account within 1-2 business days. We support direct bank transfers and popular payment methods."
     },
     {
       question: "What if I don't show up for a shift?",
-      answer: "No-shows negatively impact businesses and other workers. If you can't make a shift, cancel with as much notice as possible. Repeated no-shows may result in account suspension."
+      category: "Shifts & Scheduling",
+      answer: "No-shows negatively impact businesses and other workers. If you can't make a shift, cancel with as much notice as possible. Multiple no-shows may result in account suspension. We understand emergencies happen, but communication is key."
     },
     {
-      question: "What if I need to cancel?",
-      answer: "We understand circumstances change. Please cancel shifts at least 24 hours in advance through the app. For last-minute cancellations, contact support immediately."
+      question: "How do I update my bank details?",
+      category: "Account & Security",
+      answer: "You can update your payment information in your profile settings. Changes take effect immediately for future payments. For security, we may require verification when updating banking details."
     },
     {
-      question: "What if I have friends I want to work with?",
-      answer: "You can refer friends to Worksta, and if they meet our qualification standards, you can coordinate to work the same shifts by both selecting them in your availability."
+      question: "What should I wear to work?",
+      category: "Working at Venues",
+      answer: "Dress code varies by venue. General guidelines include: Clean, pressed black pants, comfortable non-slip shoes, and a clean collared shirt. Some venues provide uniforms. Check specific venue requirements in the shift details."
     },
     {
-      question: "What if the business wants to hire me after a shift?",
-      answer: "That's great news! If a business wants to hire you directly after your shift, they can do so without any additional fees or restrictions. We view this as a successful placement."
+      question: "Are there minimum hour requirements?",
+      category: "Shifts & Scheduling",
+      answer: "No minimum hours are required. Work as much or as little as you want. However, maintaining a consistent schedule can improve your access to premium shifts and venues."
     },
     {
-      question: "Is it really that simple and easy to work a shift?",
-      answer: "Yes! Worksta simplifies the process of finding and booking F&B shifts. Browse available shifts, select ones that match your schedule and skills, show up on time, and get paid weekly."
+      question: "How do I report an issue at work?",
+      category: "Working at Venues",
+      answer: "Use the in-app reporting feature or contact support immediately. We take all reports seriously and will investigate promptly while maintaining confidentiality."
     }
-  ];
+  ].filter(faq => 
+    faq.question.toLowerCase().includes(searchQuery.toLowerCase()) ||
+    faq.answer.toLowerCase().includes(searchQuery.toLowerCase())
+  );
 
   useEffect(() => {
-    // Fade in animation for the title
     const timer = setTimeout(() => {
       setActiveSection("title");
     }, 200);
@@ -47,112 +81,94 @@ const FAQ = () => {
   }, []);
 
   return (
-    <div className="page-container">
-      <div className="bg-[#FFDFD3] py-20 md:py-28 rounded-b-3xl overflow-hidden">
-        <div className="container relative">
-          <div className="grid grid-cols-1 md:grid-cols-5 gap-8 items-center">
-            <div className={`md:col-span-3 ${activeSection === "title" ? "animate-slideRight" : "opacity-0"} transition-all duration-700`}>
-              <h1 className="text-5xl md:text-6xl font-black text-gray-900 mb-6 leading-tight">
-                Frequently<br />Asked<br />Questions
-              </h1>
-              <p className="text-xl text-gray-700 max-w-2xl mb-8">
-                Common questions on what it takes to be a Worksta Pro, and the answers to get you fully prepared.
-              </p>
-            </div>
-            
-            <div className="md:col-span-2 relative">
-              <img 
-                src="https://images.unsplash.com/photo-1545086421-168bb7447a4a?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=600&q=80"
-                alt="F&B Professional preparing coffee" 
-                className="rounded-2xl shadow-xl w-full transform transition-all duration-700 hover:scale-105"
+    <div className="min-h-screen bg-gray-50">
+      {/* Hero Section */}
+      <div className="bg-white py-20 md:py-28 rounded-b-3xl shadow-sm relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-50/50 to-purple-50/50" />
+        <div className="container relative z-10">
+          <div className="max-w-4xl mx-auto text-center">
+            <h1 className="text-4xl md:text-5xl font-black mb-6 bg-gradient-to-r from-primary to-purple-600 bg-clip-text text-transparent">
+              Frequently Asked Questions
+            </h1>
+            <p className="text-xl text-gray-600 mb-12">
+              Everything you need to know about working with us. Can't find what you're looking for? Contact our support team.
+            </p>
+            <div className="relative max-w-2xl mx-auto">
+              <Search className="absolute left-4 top-3.5 h-5 w-5 text-gray-400" />
+              <Input
+                type="text"
+                placeholder="Search FAQ..."
+                className="pl-12 py-6 text-lg rounded-2xl shadow-sm"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
               />
             </div>
           </div>
         </div>
       </div>
-      
-      <div className="container py-16 md:py-24">
-        <div className="max-w-4xl mx-auto">
-          <div className="space-y-6 mb-16">
+
+      {/* Categories Grid */}
+      <div className="container py-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {faqCategories.map((category, index) => (
+            <div key={index} className="bg-white p-6 rounded-2xl shadow-sm hover:shadow-md transition-shadow">
+              <div className="mb-4 p-3 bg-primary/10 rounded-xl w-fit">
+                {category.icon}
+              </div>
+              <h3 className="text-xl font-bold mb-2">{category.title}</h3>
+              <p className="text-gray-600">{category.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* FAQ Accordion */}
+      <div className="container pb-24">
+        <div className="max-w-4xl mx-auto bg-white rounded-2xl shadow-sm p-8">
+          <Accordion type="single" collapsible className="space-y-4">
             {commonFAQs.map((faq, index) => (
-              <FaqAccordion 
-                key={index}
-                question={faq.question}
-                answer={faq.answer}
-                index={index}
-              />
+              <AccordionItem key={index} value={`item-${index}`} className="border rounded-xl px-6 py-2">
+                <AccordionTrigger className="text-lg hover:no-underline">
+                  <div className="flex items-start text-left">
+                    <span className="text-primary font-semibold mr-2">{faq.category}</span>
+                    <span className="font-medium">{faq.question}</span>
+                  </div>
+                </AccordionTrigger>
+                <AccordionContent className="text-gray-600 pt-4">
+                  {faq.answer}
+                </AccordionContent>
+              </AccordionItem>
             ))}
-          </div>
-          
-          <div className="mt-24 bg-gray-900 text-white p-10 md:p-16 rounded-2xl relative overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-600/20 via-indigo-600/20 to-purple-600/20 mix-blend-overlay"></div>
-            <div className="relative z-10">
-              <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-8">
-                <div>
-                  <h3 className="text-3xl font-bold mb-3">Have more questions?</h3>
-                  <p className="text-gray-300 max-w-md">
-                    Our team is ready to help. Reach out to us and we'll get back to you as soon as possible.
-                  </p>
-                </div>
-                <div className="flex flex-col gap-4">
-                  <a 
-                    href="mailto:support@worksta.sg" 
-                    className="bg-white/10 hover:bg-white/20 text-white px-8 py-4 rounded-xl font-medium transition-colors"
-                  >
-                    Email our support team
-                  </a>
-                  <a 
-                    href="tel:+6565551234" 
-                    className="bg-white text-gray-900 px-8 py-4 rounded-xl font-medium hover:bg-gray-100 transition-colors"
-                  >
-                    Call +65 6555 1234
-                  </a>
-                </div>
+          </Accordion>
+        </div>
+
+        {/* Contact Support Section */}
+        <div className="max-w-4xl mx-auto mt-16 bg-gray-900 text-white p-10 rounded-2xl relative overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-purple-600/20 mix-blend-overlay" />
+          <div className="relative z-10">
+            <div className="flex flex-col md:flex-row items-center justify-between gap-8">
+              <div>
+                <h3 className="text-3xl font-bold mb-3">Still have questions?</h3>
+                <p className="text-gray-300 max-w-md">
+                  Can't find what you're looking for? Our support team is here to help 24/7.
+                </p>
+              </div>
+              <div className="flex flex-col gap-4">
+                <a 
+                  href="mailto:support@worksta.com" 
+                  className="bg-white/10 hover:bg-white/20 text-white px-8 py-4 rounded-xl font-medium transition-colors text-center"
+                >
+                  Contact Support
+                </a>
+                <a 
+                  href="tel:+6565551234" 
+                  className="bg-white text-gray-900 px-8 py-4 rounded-xl font-medium hover:bg-gray-100 transition-colors text-center"
+                >
+                  Call +65 6555 1234
+                </a>
               </div>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
-  );
-};
-
-interface FaqAccordionProps {
-  question: string;
-  answer: string;
-  index: number;
-}
-
-const FaqAccordion = ({ question, answer, index }: FaqAccordionProps) => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [isVisible, setIsVisible] = useState(false);
-  
-  useEffect(() => {
-    // Staggered animation
-    const timer = setTimeout(() => {
-      setIsVisible(true);
-    }, 100 + index * 100);
-    
-    return () => clearTimeout(timer);
-  }, [index]);
-  
-  return (
-    <div className={`border-b border-gray-200 ${isVisible ? 'animate-slideUp' : 'opacity-0'} transition-all duration-500`}>
-      <button
-        className="w-full py-6 flex items-center justify-between focus:outline-none group"
-        onClick={() => setIsOpen(!isOpen)}
-        aria-expanded={isOpen}
-      >
-        <h3 className="text-2xl font-bold text-left text-gray-900">{question}</h3>
-        <ChevronDown 
-          className={`w-6 h-6 text-gray-700 transform transition-transform duration-300 ${isOpen ? 'rotate-180' : 'rotate-0'}`} 
-        />
-      </button>
-      <div 
-        className={`overflow-hidden transition-all duration-300 ease-in-out ${isOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}
-      >
-        <div className="pb-6 text-lg text-gray-600 pr-12">
-          {answer}
         </div>
       </div>
     </div>
