@@ -131,37 +131,53 @@ const FindWork = () => {
       <div className="relative bg-gradient-to-r from-blue-600 to-indigo-600 overflow-hidden">
         <div className="absolute inset-0 bg-grid-white/15 bg-[size:20px_20px]" />
         <div className="absolute inset-0 bg-gradient-to-t from-blue-600/50" />
-        <div className="container mx-auto px-4 py-16 relative z-10">
-          <div className="text-center max-w-4xl mx-auto">
-            <div className="inline-flex items-center bg-blue-500/20 rounded-full px-4 py-1.5 mb-6">
-              <Sparkles className="h-4 w-4 text-yellow-300 mr-2" />
-              <span className="text-sm font-medium text-white">Latest opportunities updated daily</span>
+        <div className="container mx-auto px-4 py-20 relative z-10">
+          <div className="text-center max-w-5xl mx-auto">
+            <div className="inline-flex items-center bg-blue-500/20 rounded-full px-6 py-2 mb-8">
+              <Sparkles className="h-5 w-5 text-yellow-300 mr-2" />
+              <span className="text-sm font-medium text-white">Latest opportunities updated daily | 50+ new shifts this week</span>
             </div>
-            <h1 className="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
+            <h1 className="text-5xl md:text-6xl font-bold text-white mb-8 leading-tight">
               Find Premium Shifts at Top
               <span className="text-yellow-300"> F&B Venues</span>
             </h1>
-            <p className="text-xl text-blue-100 mb-8">
-              Browse through exclusive opportunities at Singapore's finest restaurants and bars
+            <p className="text-xl text-blue-100 mb-12 max-w-3xl mx-auto">
+              Browse through exclusive opportunities at Singapore's finest restaurants and bars. 
+              Get instant access to premium shifts with competitive rates.
             </p>
+            
+            <div className="flex flex-wrap justify-center gap-8 mb-12">
+              <div className="flex items-center gap-2 text-white/90">
+                <Users className="h-5 w-5 text-yellow-300" />
+                <span>2,500+ Professionals</span>
+              </div>
+              <div className="flex items-center gap-2 text-white/90">
+                <Building2 className="h-5 w-5 text-yellow-300" />
+                <span>200+ Venues</span>
+              </div>
+              <div className="flex items-center gap-2 text-white/90">
+                <DollarSign className="h-5 w-5 text-yellow-300" />
+                <span>$14-25/hour</span>
+              </div>
+            </div>
 
             {/* Enhanced Search Box */}
-            <Card className="p-6 bg-white/95 backdrop-blur-sm shadow-2xl border-0">
-              <div className="grid grid-cols-1 md:grid-cols-12 gap-4">
+            <Card className="p-8 bg-white/95 backdrop-blur-sm shadow-2xl border-0">
+              <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
                 <div className="relative col-span-5">
                   <Input
                     type="text"
                     placeholder="Search venues, roles, or cuisines..."
-                    className="pl-10 h-12"
+                    className="pl-12 h-14 text-lg rounded-xl"
                     value={searchTerm}
                     onChange={(e) => setSearchTerm(e.target.value)}
                   />
-                  <Search className="absolute left-3 top-3.5 h-5 w-5 text-gray-400" />
+                  <Search className="absolute left-4 top-4 h-6 w-6 text-gray-400" />
                 </div>
 
                 <Select value={location} onValueChange={setLocation} className="col-span-3">
-                  <SelectTrigger className="h-12">
-                    <MapPin className="h-4 w-4 mr-2 text-gray-500" />
+                  <SelectTrigger className="h-14 text-lg rounded-xl">
+                    <MapPin className="h-5 w-5 mr-2 text-gray-500" />
                     <SelectValue placeholder="Location" />
                   </SelectTrigger>
                   <SelectContent>
@@ -169,13 +185,34 @@ const FindWork = () => {
                     <SelectItem value="Outram Park">Outram Park</SelectItem>
                     <SelectItem value="City Hall">City Hall</SelectItem>
                     <SelectItem value="Robertson Quay">Robertson Quay</SelectItem>
+                    <SelectItem value="Tanjong Pagar">Tanjong Pagar</SelectItem>
+                    <SelectItem value="Marina Bay">Marina Bay</SelectItem>
                   </SelectContent>
                 </Select>
 
-                <Button className="h-12 bg-primary hover:bg-primary/90 text-white col-span-4 text-lg">
+                <Button className="h-14 bg-primary hover:bg-primary/90 text-white col-span-4 text-lg font-semibold rounded-xl">
                   Find Shifts
-                  <ArrowRight className="ml-2 h-5 w-5" />
+                  <ArrowRight className="ml-2 h-6 w-6" />
                 </Button>
+              </div>
+
+              <div className="mt-6 flex flex-wrap items-center justify-center gap-8 text-sm text-gray-600">
+                <div className="flex items-center">
+                  <Star className="h-4 w-4 mr-2 text-yellow-500" />
+                  Premium venues
+                </div>
+                <div className="flex items-center">
+                  <Clock className="h-4 w-4 mr-2 text-blue-500" />
+                  Flexible hours
+                </div>
+                <div className="flex items-center">
+                  <DollarSign className="h-4 w-4 mr-2 text-green-500" />
+                  Weekly payments
+                </div>
+                <div className="flex items-center">
+                  <Award className="h-4 w-4 mr-2 text-purple-500" />
+                  Top-rated employers
+                </div>
               </div>
 
               <div className="mt-6 flex flex-wrap items-center justify-center gap-6 text-sm text-gray-600">
