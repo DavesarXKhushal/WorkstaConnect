@@ -17,7 +17,7 @@ export function Logo({ size = "medium", showText = true, darkMode = false, class
 
   return (
     <Link href="/" className={`flex items-center gap-2 ${className}`}>
-      <div className={`rounded-full overflow-hidden ${darkMode ? 'shadow-lg' : 'shadow-md'} bg-primary animate-pulse-soft`}>
+      <div className={`rounded-2xl overflow-hidden ${darkMode ? 'shadow-lg' : 'shadow-md'} bg-white transition-all duration-300 hover:shadow-xl hover:scale-105`}>
         <img src={logo} alt="Worksta" className={`${sizeMap[size]}`} />
       </div>
       {showText && (

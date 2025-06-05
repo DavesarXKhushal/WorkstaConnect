@@ -11,10 +11,8 @@ const Navbar = () => {
   const [mounted, setMounted] = useState(false);
   
   useEffect(() => {
-    // Initialize mounted state for animations
     setMounted(true);
     
-    // Add scroll event listener
     const handleScroll = () => {
       const isScrolled = window.scrollY > 20;
       setScrolled(isScrolled);
@@ -29,9 +27,11 @@ const Navbar = () => {
   };
 
   return (
-    <header className={`sticky top-0 z-50 transition-all duration-300 ${
-      scrolled ? 'bg-white/95 backdrop-blur-md shadow-md' : 'bg-white shadow-sm'
-    }`}>
+    <header 
+      className={`sticky top-0 z-50 transition-all duration-300 ${
+        scrolled ? 'bg-white/95 backdrop-blur-md shadow-sm' : 'bg-white'
+      }`}
+    >
       <div className="container mx-auto">
         <div className="flex justify-between items-center h-20">
           {/* Logo with animation */}
@@ -64,7 +64,7 @@ const Navbar = () => {
           <div className="flex items-center gap-4">
             <Link 
               href="/login" 
-              className={`hidden sm:inline-block text-gray-700 hover:text-primary font-medium px-4 py-2 rounded-full transition-all hover:bg-gray-50 duration-700 transform ${
+              className={`hidden sm:inline-block text-gray-700 hover:text-primary font-medium px-4 py-2 rounded-xl transition-all hover:bg-gray-50 duration-700 transform ${
                 mounted ? 'translate-x-0 opacity-100' : 'translate-x-10 opacity-0'
               }`}
             >
@@ -76,7 +76,7 @@ const Navbar = () => {
                 mounted ? 'translate-x-0 opacity-100' : 'translate-x-10 opacity-0'
               }`}
             >
-              <Button className="btn-primary rounded-full px-6 py-2 h-auto group relative overflow-hidden">
+              <Button className="bg-primary text-white hover:bg-primary/90 rounded-xl px-6 py-2 h-auto group relative overflow-hidden">
                 <span className="relative z-10 flex items-center">
                   Get started 
                   <ArrowRight className="h-4 w-4 ml-1 group-hover:translate-x-1 transition-transform" />
@@ -88,7 +88,7 @@ const Navbar = () => {
             {/* Mobile menu button */}
             <button 
               type="button" 
-              className="md:hidden p-2 text-gray-700 hover:bg-gray-100 rounded-full transition-colors"
+              className="md:hidden p-2 text-gray-700 hover:bg-gray-100 rounded-xl transition-colors"
               onClick={toggleMobileMenu}
               aria-expanded={isMobileMenuOpen}
             >
@@ -128,7 +128,7 @@ const Navbar = () => {
               onClick={() => setIsMobileMenuOpen(false)}
               className="block py-2 mt-4"
             >
-              <Button className="w-full btn-primary rounded-full py-2 h-auto group relative overflow-hidden">
+              <Button className="w-full bg-primary text-white rounded-xl py-2 h-auto group relative overflow-hidden">
                 <span className="relative z-10 flex items-center justify-center">
                   Get started 
                   <ArrowRight className="h-4 w-4 ml-1 group-hover:translate-x-1 transition-transform" />
@@ -154,7 +154,7 @@ const NavButton = ({ href, active, children, className = '' }: NavButtonProps) =
   return (
     <Link 
       href={href} 
-      className={`px-4 py-2 font-medium rounded-full relative group ${
+      className={`px-4 py-2 font-medium rounded-xl relative group ${
         active 
           ? 'text-primary font-semibold' 
           : 'text-gray-700 hover:text-primary'
